@@ -13,21 +13,22 @@ const routes = [
 },
 {
     path: '/goods',
-    components:Goods
+    component:Goods
 },
 {
     path: '/seller',
-    components:Seller
+    component:Seller
 },
 {
     path: '/ratings',
-    components:Ratings
+    component:Ratings
 }
 
 
 ]
 const router = new VueRouter({
     routes
+    
 })
 //3.导出router
 export default router
