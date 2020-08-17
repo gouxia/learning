@@ -1,28 +1,56 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <v-header></v-header>
+    <div class="tab">
+      <div class="tab-item" @click="itemClick('/goods')">
+        <h2>商品</h2>
+      </div>
+      <div class="tab-item" @click="itemClick('/ratings')">
+        <h2>评价</h2>
+      </div>
+      <div class="tab-item" @click="itemClick('/seller')">
+        <h2>商家</h2>
+      </div>
+    </div>
+    <div class="content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import header from "./components/header/header.vue";
 export default {
-  name: 'App',
+  name: "App",
+  props: {
+    path: String,
+  },
   components: {
-    HelloWorld
-  }
-}
+    "v-header": header,
+  },
+  methods: {
+    itemClick(path) {
+      console.log(this.$router);
+      this.$router.replace({
+        path,
+      });
+    },
+  },
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: auto;
+}
+.tab {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+}
+.tab-item {
+  flex: 1;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
