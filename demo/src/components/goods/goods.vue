@@ -103,7 +103,7 @@
       <div class="shop">
         <div class="shopleft">
           <div class="shoplogo">
-            <img src="../../../src/assets/05.png"/>
+            <img src="../../../src/assets/gouwuche.png"/>
           </div>
           <div class="lala">￥0</div>
         </div>
