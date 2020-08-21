@@ -49,23 +49,19 @@ export default {
 };
 </script>
 
-<style>
-*{
-  margin:0;
-  padding: 0;
-}
+<style lang="scss" scoped>
+
 html, body{
   height: 100%;
+  margin: 0;
 }
 #app{
-  /* width: 750px;
-  overflow: hidden; */
       display: flex;
     flex-direction: column;
 }
 .tab {
   display: flex;
-  width: 100%;
+  // width: 100%;
   height: 40px;
   line-height: 40px;
   border-bottom: 1px solid rgba(7, 17, 27, 0.1);
