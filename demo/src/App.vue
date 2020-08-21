@@ -1,5 +1,5 @@
 <template>
-  <div id="#app">
+  <div id="app">
     <v-header :seller="initData.seller"></v-header>
 
     <div class="tab">
@@ -53,6 +53,15 @@ export default {
 *{
   margin:0;
   padding: 0;
+}
+html, body{
+  height: 100%;
+}
+#app{
+  /* width: 750px;
+  overflow: hidden; */
+      display: flex;
+    flex-direction: column;
 }
 .tab {
   display: flex;

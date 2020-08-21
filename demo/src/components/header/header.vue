@@ -97,8 +97,8 @@
 
 
 
-      <div class="detail-close" @click="hideDetail">
-        <div class="icon-close"><img src="../../../src/assets/06.png" /> </div>
+      <div class="detail-closed" @click="hideDetail">
+        <div class="icon-closed"><img src="../../../src/assets/06.png" /> </div>
       </div>
     </div>
   </div>
@@ -146,8 +146,11 @@ export default {
   border-radius: 2px;
 }
 .content {
-  display: inline-block;
+  /* display: inline-block; */
   font-size: 14px;
+  flex: 1;
+  overflow: hidden;
+  /* width: ; */
   /* margin-left: 16px; */
 }
 .title {
@@ -233,7 +236,7 @@ export default {
   /* margin-top: 64px; */
   /* padding-bottom: 64px; */
 }
-.detail-close {
+.detail-closed {
   /* position: relative; */
   /* width: 32px; */
   height: 52px;
@@ -313,7 +316,7 @@ export default {
   color: rgb(255, 255, 255);
   line-height: 24px;
 }
-.icon-close{
+.icon-closed{
   width: max-content;
   margin: auto;
 

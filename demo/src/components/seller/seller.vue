@@ -187,7 +187,7 @@ border-right:2px solid rgba(7, 17, 27,0.1);
 .title-item {
   height: 20px;
   width: 100%;
-  background-color: grey;
+  background-color: #f3f5f7;
 }
 .center1{
   margin-top: 18px;
@@ -217,7 +217,7 @@ border-right:2px solid rgba(7, 17, 27,0.1);
 .center4{
   height: 20px;
   width: 100%;
-  background-color: grey;
+  background-color: #f3f5f7;
 }
 .center5{
   display: flex;
