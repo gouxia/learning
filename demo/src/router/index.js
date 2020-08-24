@@ -1,8 +1,8 @@
 // import Vue from 'vue'
 import VueRouter from "vue-router";
-const Goods = () => import("../components/goods/goods");
-const Seller = () => import("../components/seller/seller");
-const Ratings = () => import("../components/ratings/ratings");
+// const Goods = () => import("../components/goods/goods");
+// const Seller = () => import("../components/seller/seller");
+// const Ratings = () => import("../components/ratings/ratings");
 //1.安装插件
 // Vue.use(VueRouter)
 //2.创建路有对象
@@ -32,19 +32,19 @@ const routes = [
         component: () => import("../routes/ratings.vue")
       }
     ],
-  },
-  {
-    path: "/goods",
-    component: Goods,
-  },
-  {
-    path: "/seller",
-    component: Seller,
-  },
-  {
-    path: "/ratings",
-    component: Ratings,
-  },
+  }
+  // {
+  //   path: "/goods",
+  //   component: Goods,
+  // },
+  // {
+  //   path: "/seller",
+  //   component: Seller,
+  // },
+  // {
+  //   path: "/ratings",
+  //   component: Ratings,
+  // },
 ];
 const router = new VueRouter({
   routes,

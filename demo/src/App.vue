@@ -4,22 +4,22 @@
       <router-view></router-view>
     </div>
     <div class="footer">
-      <ShopCart/>
+      <ShopCart />
     </div>
   </div>
 </template>
 
 <script>
-import ShopCart from "./components/ShopCart"
+import ShopCart from "./components/ShopCart";
 export default {
   name: "App",
+  components: {
+    ShopCart
+  },
   data() {
     return {};
   },
   props: {},
-  components: {
-    ShopCart
-  },
   methods: {},
 };
 </script>
@@ -29,10 +29,10 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  .content{
+  .content {
     flex: 1;
   }
-  .footer{
+  .footer {
     background: crimson;
     height: 50px;
   }

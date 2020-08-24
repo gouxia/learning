@@ -67,23 +67,23 @@
         <div class="main-menu">
           <div class="menu-item">
             <img src="../../../src/assets/decrease_1@2x.png" />
-            在线支付满28减5，满50减10
+            {{ seller.supports[0].description }}
           </div>
           <div class="menu-item">
             <img src="../../../src/assets/discount_1@2x.png" />
-            单人精彩赛
+           {{ seller.supports[2].description }}
           </div>
           <div class="menu-item">
             <img src="../../../src/assets/discount_1@2x.png" />
-            清肺雪梨汤8折抢购
+            {{ seller.supports[1].description }}
           </div>
           <div class="menu-item">
             <img src="../../../src/assets/special_1@2x.png" />
-            特价饮品八折抢购
+            {{ seller.supports[3].description }}
           </div>
           <div class="menu-item">
             <img src="../../../src/assets/special_1@2x.png" />
-            单人特色套餐
+            {{ seller.supports[2].description }}
           </div>
         </div>
         <div class="main-title">
@@ -93,8 +93,7 @@
         </div>
         <div class="main-menu2">
           <div class="menu-item2">
-            粥品香坊其烹饪粥料的秘方源于中国千年古法，在融和现代制作工艺，由世界烹饪大师屈浩先生领衔研发。
-            坚守纯天然、0添加的良心品质深得消费者青睐，发展至今成为粥类的引领品牌。是2008年奥运会和2013年园博会指定餐饮服务商。
+            {{seller.bulletin}}
           </div>
         </div>
       </div>
@@ -112,6 +111,8 @@ export default {
       type: Object,
     },
   },
+
+  //组件自己的数据存放在哪？data属性是一个函数，这个函数返回一个对象，对象内部保存着自己组件需要的数据
   data() {
     return {
       detailShow: false,
