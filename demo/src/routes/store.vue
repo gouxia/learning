@@ -7,18 +7,18 @@
     <div class="tab">
       <!-- 在大的路由里面放置三个小的路由页面数据 -->
       <router-link
-        :to="{ path: '/goods' }"
-        :class="['tab-item', { 'tab-item-active': $route.path === '/goods' }]"
+        :to="{ path: '/store/goods' }"
+        :class="['tab-item', { 'tab-item-active': $route.path === '/store/goods' }]"
         >商品</router-link
       >
       <router-link
-        :to="{ path: '/ratings' }"
-        :class="['tab-item', { 'tab-item-active': $route.path === '/ratings' }]"
+        :to="{ path: '/store/ratings' }"
+        :class="['tab-item', { 'tab-item-active': $route.path === '/store/ratings' }]"
         >评价</router-link
       >
       <router-link
-        :to="{ path: '/seller' }"
-        :class="['tab-item', { 'tab-item-active': $route.path === '/seller' }]"
+        :to="{ path: '/store/seller' }"
+        :class="['tab-item', { 'tab-item-active': $route.path === '/store/seller' }]"
         >商家</router-link
       >
     </div>

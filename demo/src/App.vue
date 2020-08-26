@@ -33,7 +33,7 @@ export default {
     flex: 1;
   }
   .footer {
-    background: crimson;
+    // background: crimson;
     height: 50px;
   }
 }

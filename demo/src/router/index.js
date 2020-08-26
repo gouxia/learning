@@ -17,34 +17,26 @@ const routes = [
     children: [
       {
         path: "/",
-        redirect: "/goods",
+        redirect: "/store/goods",
       },
       {
-        path: "/goods",
+        path: "/store/goods",
         component: () => import("../routes/goods.vue"),
       },
       {
-        path: "/seller",
+        path: "/store/seller",
         component: () => import("../routes/seller.vue")
       },
       {
-        path: "/ratings",
+        path: "/store/ratings",
         component: () => import("../routes/ratings.vue")
       }
     ],
+  },
+  {
+    path: "/goodDetail",
+    component: () => import("../routes/goodDetail.vue")
   }
-  // {
-  //   path: "/goods",
-  //   component: Goods,
-  // },
-  // {
-  //   path: "/seller",
-  //   component: Seller,
-  // },
-  // {
-  //   path: "/ratings",
-  //   component: Ratings,
-  // },
 ];
 const router = new VueRouter({
   routes,
