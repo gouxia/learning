@@ -17,13 +17,15 @@ export default {
   },
   
   methods: {
-    addCart() {
+    addCart(event) {
       if (!this.food.count) {
         //利用set就可以对加购商品的数量进行观测
         Vue.set(this.food, 'count', 1);
       } else {
         this.food.count++;
       }
+      //购物车小球动画,当点击加购商品时，绑定一个事件
+      this.$emit('cart.add',event.target);
     },
    descreaseCart() {  
       if (this.food.count) {

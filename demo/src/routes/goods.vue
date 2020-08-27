@@ -1,64 +1,63 @@
 <template>
   <div class="goods">
-    <div class="menu-wrapper">
+    <div class="menu-wrapper" ref="menuwrapper">
       <ul class="caidan">
-        <li v-for="item in goods" :key="item.name" class="caidan1">
-          <span class="text">{{ item.name }}</span>
+        <!-- :class="{'current':currentIndex===$index}"   表示当我们在遍历右侧食品区的时候，
+        索引值等于左侧菜单项的索引值时，左侧菜单项的当前索引值项显示为高亮状态 -->
+        <li 
+        v-for="item in goods" 
+        :key="item.name" 
+        class="caidan1"
+        :class="{'current':currentIndex===index}"
+        @click="selectMenu(index)"   
+        >  
+          <span>{{ item.name }}</span>
         </li>
       </ul>
     </div>
-    <div class="foods-wrapper">
-      <div v-for="goodItem in goods" :key="goodItem.name">
-        <div class="foods-title">
-          <span>{{ goodItem.name }}</span>
-        </div>
-        <div
-          class="foods-item"
-          v-for="foodItem in goodItem.foods"
-          :key="foodItem.name"
-        >
-          <div class="left" @click="toCheckDetail(foodItem)">
-            <img :src="foodItem.image" />
+    <div class="foods-wrapper" ref="foodswrapper">
+      <div>
+        <div 
+        v-for="goodItem in goods" 
+        :key="goodItem.name"
+        class="foods-list foods-list-hook">
+          <div class="foods-title">
+            <span>{{ goodItem.name }}</span>
           </div>
-          <div class="right">
-            <div class="foods-name">
-              <span>{{ foodItem.name }}</span>
+          <div
+            class="foods-item"
+            v-for="foodItem in goodItem.foods"
+            :key="foodItem.name"
+          >
+            <div class="left" @click="toCheckDetail(foodItem)">
+              <img :src="foodItem.image" />
             </div>
-            <div class="foods-description">
-              <span>{{ foodItem.description }}</span>
-            </div>
-            <div class="foods-xiaoliang">
-              <span>月售{{ foodItem.sellCount }}份</span>
-              <span style="margin-left:12px;"
-                >好评率{{ foodItem.rating }}%</span
-              >
-            </div>
-            <div class="foods-jiage">
-              <div class="price-info-wrapper">
-                <div class="current-price">￥{{ foodItem.price }}</div>
-                <div v-if="foodItem.oldPrice" class="old-price">
-                  ￥{{ foodItem.oldPrice }}
+            <div class="right">
+              <div class="foods-name">
+                <span>{{ foodItem.name }}</span>
+              </div>
+              <div class="foods-description">
+                <span>{{ foodItem.description }}</span>
+              </div>
+              <div class="foods-xiaoliang">
+                <span>月售{{ foodItem.sellCount }}份</span>
+                <span style="margin-left:12px;"
+                  >好评率{{ foodItem.rating }}%</span
+                >
+              </div>
+              <div class="foods-jiage">
+                <div class="price-info-wrapper">
+                  <div class="current-price">￥{{ foodItem.price }}</div>
+                  <div v-if="foodItem.oldPrice" class="old-price">
+                    ￥{{ foodItem.oldPrice }}
+                  </div>
+                </div>
+                <div class="cartcontrol-wrapper">
+                  <cartcontrol :food="foodItem"></cartcontrol>
                 </div>
               </div>
-              <div class="cartcontrol-wrapper">
-                <cartcontrol :food="foodItem"></cartcontrol>
-              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="shop">
-        <div class="shopleft">
-          <div class="shoplogo">
-            <img src="../assets/gouwuche.png" />
-          </div>
-          <div class="lala">￥0</div>
-        </div>
-        <div class="shopcenter">
-          <span>另需配送费￥4元</span>
-        </div>
-        <div class="shopright">
-          <span>￥20元起送</span>
         </div>
       </div>
     </div>
@@ -66,20 +65,96 @@
 </template>
 
 <script>
+import BScroll from "better-scroll";
 import store from "../store";
 import mockData from "../mock.json";
-import cartcontrol from  "../components/cartcontrol"
-
+import cartcontrol from "../components/cartcontrol";
+//import bscroll from
+//import ShopCart from "../components/ShopCart"
+//import ShopCart from "./components/ShopCart";
 export default {
   data() {
     return {
       goods: mockData.goods,
+      //每个数组的高度：每个菜单项是一个数组，
+      listHight: [],
+      //定义一个变量用来记录y轴的高度变化
+      scrollY: 0,
+      index:''
     };
   },
+  //计算属性
+  computed: {
+    //表示左侧菜单项当前的索引值，就是当前处于哪个食物分类
+    currentIndex() {
+      //i代表索引值，也就是菜单项的其中一项
+      for (let i=0; i< this.listHight.length; i++) {
+        //当前索引值的高度
+        let height1 = this.listHight[i];
+        //下一个索引值的高度
+        let height2 = this.listHight[i + 1];
+        //判断当前scrollY在哪个菜单项区间,如果遍历到菜单项的最后一项，也就是数组的最后一个索引i，返回的为i+1，这样是不对的，所以要加个与的判断
+        if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
+          return i;
+        }
+      }
+      //如果什么都没有返回0
+      return 0;
+    }
+  },
   components: {
-    cartcontrol
+    cartcontrol,
+    //ShopCart
+  },
+  mounted() {
+    //设置滑动的反应时间
+    setTimeout(() => {
+      //调用滑动
+      this._initScroll();
+      //调用计算的高度，每个菜单项所含菜品的高度
+      this._calculateHeight();
+    }, 50);
   },
   methods: {
+    selectMenu(index) {
+      let foodsList = this.$refs.foodswrapper.getElementsByClassName('foods-list-hook');
+      let el = foodsList[index];
+      this.foodsScroll.scrollToElement(el,300);
+    },
+    //better-scroll的方法
+    _initScroll() {
+      //console.log(this.$refs)
+      //console.log(this.$refs.menuwrapper)
+      this.menuScroll = new BScroll(this.$refs.menuwrapper, {
+        // scrollY: true,
+        // scrollX: true,
+        click: true,
+        // probeType: 3, // listening scroll hook
+      });
+      this.foodsScroll = new BScroll(this.$refs.foodswrapper, {
+        // scrollY: true,
+        // scrollX: true,
+        click: true,
+        //这个属性的用处是希望在滚动时能实时的检测滚动的位置
+         probeType: 3
+      });
+      this.foodsScroll.on('scroll', (pos) => {
+        //pos.y滚动时是一个负值，利用Math.abs将其转换为正值
+        //这样在滚动时就能实时的知道y轴滚动的高度
+        this.scrollY = Math.abs(Math.round(pos.y));
+      });
+    },
+    //计算每个菜单项所含菜品的高度，方便左侧菜单项和右侧食物区发生联动的效果
+    _calculateHeight(){
+      let foodsList = this.$refs.foodswrapper.getElementsByClassName('foods-list-hook');
+      let height = 0;
+      this.listHight.push(height);
+      for (let i=0; i < foodsList.length; i++) {
+        let item = foodsList[i];
+        height += item.clientHight;
+        this.listHight.push(height);
+      }
+    },
     //当点击时，进入食品的详情页
     toCheckDetail(goodDetail) {
       //saveGoodDetail，提交修改的食品详情信息
@@ -89,7 +164,7 @@ export default {
       this.$router.push({
         path: "/goodDetail",
       });
-    },
+    }
   },
 };
 </script>
@@ -108,6 +183,8 @@ export default {
     /* 第一个参数是等分，第二个参数是根据内容的缩放情况，第三个参数是占位大小 */
     // flex: 0 0 90px;
     width: 80px;
+    //height: 200PX;
+    //overflow: hidden;
     background: #f3f5f7;
     text-align: center;
     .caidan {
@@ -117,7 +194,17 @@ export default {
         border-bottom: 1px solid gainsboro;
         line-height: 14px;
         display: table;
-        .text {
+        &.current {
+          position: relative;
+          margin-top: -1px;
+          background: red;
+          font-weight: 700;
+          z-index: 10;
+          // .text{
+          //   //border-none()
+          // }
+        }
+        span {
           font-size: 12px;
           font-weight: 200;
           line-height: 14px;
@@ -125,13 +212,15 @@ export default {
           display: table-cell;
           vertical-align: middle;
           padding-left: 12px;
+          //border-none();
         }
       }
+
     }
   }
   .foods-wrapper {
     flex: 1;
-    overflow: scroll;
+    //overflow: scroll;
     .foods-title {
       height: 30px;
       background: #f3f5f7;

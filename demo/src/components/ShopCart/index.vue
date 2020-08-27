@@ -18,8 +18,15 @@
     <div class="pay" :class="payClass">
       {{ payDesc }}
     </div>
+    <!-- 购物车小球动画实现 利用了vue的过渡-->
+    <div class="ball-container">
+      <div v-for="(ball, ballIndex) in balls" :key="`${ballIndex}ball`" v-show="ball.show" transition="drop" class="ball">
+        <div class="inner"></div>
+      </div>
+
+    </div>
     <!-- 购物车详情页(列表) -->
-     <div class="shopcart-list" v-show="listShow">
+     <!-- <div class="shopcart-list" v-show="listShow">
       <div class="list-header">
         <h1 class="title">购物车</h1>
         <span class="empty">清空</span>
@@ -38,15 +45,39 @@
           </li>
         </ul> 
       </div>
-    </div>  
+    </div>   -->
   </div>
 </template>
 
 <script>
-import cartcontrol from '../cartcontrol'
+//import cartcontrol from '../cartcontrol'
 export default {
   components: {
-   cartcontrol
+   //cartcontrol
+  },
+  data() {
+    return {
+      //利用了vue中的过渡，使用css过渡
+      balls: [
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        }
+      ]
+    }
+
+
   },
   props: {
     //选购商品，购物车所有的状态变化都依赖于selectFoods，selectFoods是通过父组件传过来的
@@ -56,7 +87,7 @@ export default {
         return [
           {
             price: 5,
-            count: 2,
+            count: 8,
           },
         ];
         
@@ -115,6 +146,11 @@ export default {
       }
     },
   },
+  methods: {
+     drop(el) {
+      console.log(el);
+     }
+  }
 };
 </script>
 
@@ -224,6 +260,25 @@ export default {
       background: #00b43c;
       color: #ffffff;
     }
+  }
+  .ball-container {
+    .ball {
+      position: fixed;
+      left: 32px;
+      bottom: 22px;
+      z-index: 200;
+      &.drop-transition {
+        transition: all 0.4s;
+        .inner {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: rgb(0,160,220);
+          transition:  all 0.4s;
+        }
+      }
+    }
+
   }
 }
 </style>
