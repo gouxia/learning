@@ -1,7 +1,7 @@
 <template>
-  <div class="ratings-gouwu">
+  <div class="ratings-gouwu" @click="foldDetail">
     <div class="gouwuleft">
-      <div class="gouwulogo">
+      <div class="gouwulogo" @click="foldDetail">
         <!-- ：class 为动态切换多个class，原来的class不会被覆盖，也可以根据条件切换class -->
         <div :class="['logo', { 'logo-highlight': totalCount > 0 }]"></div>
         <!--v-show="totalCount > 0" 表示购物车商品数量大于0的时候，商品数量会显示，购物车没有商品时，商品数量会隐藏  -->
@@ -18,68 +18,98 @@
     <div class="pay" :class="payClass">
       {{ payDesc }}
     </div>
-    <!-- 购物车小球动画实现 利用了vue的过渡-->
-    <div class="ball-container">
-      <div
-        v-for="(ball, ballIndex) in balls"
-        :key="`${ballIndex}ball`"
-        v-show="ball.show"
-        transition="drop"
-        class="ball"
-      >
-        <div class="inner"></div>
+    <!-- 购物车详情页(列表) -->
+    <div class="shopcart-detail" v-if="detailFold">
+      <div class="shopcart-list">
+        <div class="list-header">
+          <h1 class="title">购物车</h1>
+          <span class="empty">清空</span>
+        </div>
+        <div class="list-content">
+          <ul>
+            <!-- <li class="food" v-for="item in selectFoods" :key="item.price">
+            <span class="name">{{ item.name }}</span>
+            <div class="price">
+              <span>￥{{ item.price * item.num }}</span>
+            </div>
+          </li> -->
+            <li class="food">
+              <div class="food-name">莲子核桃黑米粥</div>
+              <div class="food-price">￥10</div>
+              <div class="food-shop">
+                <div
+                  class="cart-decrease"
+                  v-show="getGoodNum > 0"
+                  @click="descreaseCart(foodItem)"
+                ></div>
+                <div class="cart-count" v-show="getGoodNum > 0">
+                  {{getGoodNum}}
+                </div>
+                <div class="cart-add" @click="addCart(foodItem)"></div>
+              </div>
+            </li>
+            <li class="food">
+              <div class="food-name">莲子核桃黑米粥</div>
+              <div class="food-price">￥10</div>
+              <div class="food-shop">
+                <div class="cart-decrease">
+                  
+                </div>
+                <div class="cart-count">
+                  0
+                </div>
+                <div class="cart-add">
+                  
+                </div>
+              </div>
+            </li>
+            <li class="food">
+              <div class="food-name">莲子核桃黑米粥</div>
+              <div class="food-price">￥10</div>
+              <div class="food-shop">
+                <div class="cart-decrease">
+                  
+                </div>
+                <div class="cart-count">
+                  0
+                </div>
+                <div class="cart-add">
+                  
+                </div>
+              </div>
+            </li>
+            <li class="food">
+              <div class="food-name">莲子核桃黑米粥</div>
+              <div class="food-price">￥10</div>
+              <div class="food-shop">
+                <div class="cart-decrease">
+                  
+                </div>
+                <div class="cart-count">
+                  0
+                </div>
+                <div class="cart-add">
+                  
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <!-- 购物车详情页(列表) -->
-    <!-- <div class="shopcart-list" v-show="listShow">
-      <div class="list-header">
-        <h1 class="title">购物车</h1>
-        <span class="empty">清空</span>
-      </div>
-      <div class="list-content"> 
-         <ul>
-          <li class="food" v-for="food in selectFoods"  :key="food.price">
-            <span class="name">{{food.name}}</span>
-            <div class="price">
-              <span>￥{{food.price * food.count}}</span>
-            </div>
-            
-            <div class="cartcontrol-wrapper">
-              <cartcontrol :food="foodItem"></cartcontrol>
-            </div>
-          </li>
-        </ul> 
-      </div>
-    </div>   -->
   </div>
 </template>
 
 <script>
-//import cartcontrol from '../cartcontrol'
+// import GoodItem from "../GoodItem";
+import store from "../../store";
 export default {
   components: {
-    //cartcontrol
+    // GoodItem,
   },
   data() {
     return {
-      //利用了vue中的过渡，使用css过渡
-      balls: [
-        {
-          show: false,
-        },
-        {
-          show: false,
-        },
-        {
-          show: false,
-        },
-        {
-          show: false,
-        },
-        {
-          show: false,
-        },
-      ],
+      detailFold: false,
     };
   },
   props: {
@@ -105,7 +135,12 @@ export default {
       type: Number,
       default: 20,
     },
+    foodItem: {
+      type: Object,
+      default: () => ({}),
+    },
   },
+
   //计算属性中放一些复杂的逻辑
   //计算购物车商品的总价格
   computed: {
@@ -147,10 +182,39 @@ export default {
         return "enough";
       }
     },
+    selectedgood() {
+      return store.state.selectedgood;
+    },
+    getGoodNum() {
+      //console.log('selectedgood', this.selectedgood);
+      const { name } = this.foodItem;
+      const curIndex = this.selectedgood.findIndex(
+        (item) => item.name === name
+      );
+      if (curIndex > -1) {
+        return this.selectedgood[curIndex].num;
+      } else {
+        return 0;
+      }
+    },
   },
   methods: {
-    drop(el) {
-      console.log(el);
+    // 当点击时，购物车详情页显示
+    foldDetail() {
+      this.detailFold = true;
+    },
+    addCart(foodItem) {
+      //console.log(foodItem);
+      store.commit("changeselectedGood", {
+        type: "add",
+        goodinfo: foodItem,
+      });
+    },
+    descreaseCart(foodItem) {
+      store.commit("changeselectedGood", {
+        type: "desc",
+        goodinfo: foodItem,
+      });
     },
   },
 };
@@ -165,6 +229,7 @@ export default {
   width: 100%;
   height: 48px;
   display: flex;
+
   .gouwuleft {
     /* flex:1; */
     background-color: #141d27;
@@ -180,6 +245,7 @@ export default {
       box-sizing: border-box;
       vertical-align: top;
       border-radius: 50%;
+      z-index: 999;
       .logo {
         width: 100%;
         height: 100%;
@@ -263,20 +329,90 @@ export default {
       color: #ffffff;
     }
   }
-  .ball-container {
-    .ball {
+  .shopcart-detail {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    background-color: rgba(7, 17, 27, 0.8);
+    top: 0;
+    left: 0;
+    bottom: 100px;
+    .shopcart-list {
       position: fixed;
-      left: 32px;
-      bottom: 22px;
-      z-index: 200;
-      &.drop-transition {
-        transition: all 0.4s;
-        .inner {
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          background: rgb(0, 160, 220);
-          transition: all 0.4s;
+      left: 0;
+      bottom: 50px;
+      z-index: -1;
+      width: 100%;
+      background: #fff;
+      .list-header {
+        display: flex;
+        height: 50px;
+        background: #f3f5f7;
+        border-bottom: 1px solid #dbdee1;
+        padding-left: 26px;
+        .title {
+          font-size: 18px;
+          color: rgb(7, 17, 27);
+          line-height: 50px;
+          font-weight: 200;
+        }
+        .empty {
+          font-size: 15px;
+          color: rgb(0, 160, 220);
+          line-height: 50px;
+          margin-left: 220px;
+        }
+      }
+      .list-content {
+        padding-left: 26px;
+        padding-right: 26px;
+        .food {
+          display: flex;
+          height: 60px;
+          width: 100%;
+          border-bottom: 1px solid #dbdee1;
+          .food-name {
+            line-height: 60px;
+            font-size: 15px;
+            color: rgb(7, 17, 27);
+            font-weight: 500;
+          }
+          .food-price {
+            line-height: 60px;
+            font-size: 15px;
+            color: rgb(240, 20, 20);
+            font-weight: bold;
+            margin-left: 80px;
+          }
+          .food-shop {
+            display: flex;
+            line-height: 60px;
+            margin-left: 10px;
+            width: 83px;
+            .cart-decrease {
+              flex: 1;
+              margin-left: 5px;
+              background-image: url("../../assets/jian.png");
+              background-size: 20px;
+              background-repeat: no-repeat;
+              background-position: center;
+            }
+            .cart-count {
+              flex: 1;
+              margin-left: 20px;
+              font-size: 15px;
+              color: #93999f;
+              margin-left: 10px;
+            }
+            .cart-add {
+              flex: 1;
+              margin-left: 10px;
+              background-image: url("../../assets/jia.png");
+              background-size: 20px;
+              background-repeat: no-repeat;
+              background-position: center;
+            }
+          }
         }
       }
     }

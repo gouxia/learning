@@ -23,15 +23,15 @@
         </div>
 
         <div class="cartcontrol-wrapper">
-          <div class="cart-decrease" @click="descreaseCart(foodItem)">
+          <div class="cart-decrease" v-show="getGoodNum > 0" @click="descreaseCart(foodItem)">
             -
           </div>
-          <div class="cart-count">
+          <div class="cart-count"  v-show="getGoodNum > 0">
             {{ getGoodNum }}
           </div>
           <div class="cart-add" @click="addCart(foodItem)">+</div>
 
-          <!-- <cartcontrol></cartcontrol> -->
+          
         </div>
       </div>
     </div>
@@ -40,7 +40,6 @@
 
 <script>
 import store from "../../store";
-// import { mapGetters } from 'vuex'
 export default {
   name: "good-item",
   props: {
@@ -50,23 +49,16 @@ export default {
     },
   },
   computed: {
-    // ...mapGetters({
-    //   selectedgood: 'getter_selectedgood'
-    // }),
     selectedgood(){
       return store.state.selectedgood
     },
     getGoodNum() {
-      console.log('selectedgood', this.selectedgood);
+      //console.log('selectedgood', this.selectedgood);
       const { name } = this.foodItem;
       const curIndex = this.selectedgood.findIndex(
         (item) => item.name === name
       );
       if (curIndex > -1) {
-        console.log(
-          "this.selectedgood[curIndex].num",
-          this.selectedgood[curIndex].num
-        );
         return this.selectedgood[curIndex].num;
       } else {
         return 0;
@@ -85,7 +77,7 @@ export default {
       });
     },
     addCart(foodItem) {
-      console.log(foodItem);
+      //console.log(foodItem);
       store.commit("changeselectedGood", {
         type: "add",
         goodinfo: foodItem,

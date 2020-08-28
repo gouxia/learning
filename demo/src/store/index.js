@@ -21,37 +21,38 @@ const store = new Vuex.Store({
     },
     changeselectedGood(state, payload) {
       const { type, goodinfo } = payload;
+      let curSelectedgood = [...state.selectedgood];
       const { name } = goodinfo;
       // 已选择的商品索引
-      const curIndex = state.selectedgood.findIndex(
-        (item) => item.name === name
-      );
+      const curIndex = curSelectedgood.findIndex((item) => item.name === name);
       if (curIndex > -1) {
-        let curgood = state.selectedgood[curIndex];
+        let curgood = curSelectedgood[curIndex];
         let goodnum = curgood.num;
         if (type === "add") {
           goodnum++;
-          state.selectedgood[curIndex] = {
+          curSelectedgood[curIndex] = {
             ...goodinfo,
             num: goodnum,
           };
         } else {
           goodnum--;
+          //console.log("goodnum", goodnum);
           if (goodnum === 0) {
-            state.selectedgood.splice(curIndex, 1);
+            curSelectedgood.splice(curIndex, 1);
           } else {
-            state.selectedgood[curIndex] = {
+            curSelectedgood[curIndex] = {
               ...goodinfo,
               num: goodnum,
             };
           }
         }
-      } else {
-        state.selectedgood.push({
+      } else if (type === "add") {
+        curSelectedgood.push({
           ...goodinfo,
           num: 1,
         });
       }
+      state.selectedgood = curSelectedgood;
     },
   },
   actions: {},

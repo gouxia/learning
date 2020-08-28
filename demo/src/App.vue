@@ -4,7 +4,7 @@
       <router-view></router-view>
     </div>
     <div class="footer">
-       <ShopCart/>  
+        <ShopCart/> 
     </div>
   </div>
 </template>

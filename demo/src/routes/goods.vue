@@ -30,34 +30,6 @@
             :key="foodItem.name"
           >
           <GoodItem :foodItem="foodItem"></GoodItem>
-            <!-- <div class="left" @click="toCheckDetail(foodItem)">
-              <img :src="foodItem.image" />
-            </div>
-            <div class="right">
-              <div class="foods-name">
-                <span>{{ foodItem.name }}</span>
-              </div>
-              <div class="foods-description">
-                <span>{{ foodItem.description }}</span>
-              </div>
-              <div class="foods-xiaoliang">
-                <span>月售{{ foodItem.sellCount }}份</span>
-                <span style="margin-left:12px;"
-                  >好评率{{ foodItem.rating }}%</span
-                >
-              </div>
-              <div class="foods-jiage">
-                <div class="price-info-wrapper">
-                  <div class="current-price">￥{{ foodItem.price }}</div>
-                  <div v-if="foodItem.oldPrice" class="old-price">
-                    ￥{{ foodItem.oldPrice }}
-                  </div>
-                </div>
-                <div class="cartcontrol-wrapper">
-                  <cartcontrol :food="foodItem"></cartcontrol>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
@@ -68,18 +40,14 @@
 <script>
 import BScroll from "better-scroll";
 import store from "../store";
-import { mapGetters } from 'vuex'
 import mockData from "../mock.json";
-// import cartcontrol from "../components/cartcontrol";
-import GoodItem  from "../components/GoodItem"
-//import bscroll from
+import GoodItem  from "../components/GoodItem";
 //import ShopCart from "../components/ShopCart"
-//import ShopCart from "./components/ShopCart";
 export default {
   components: {
-    // cartcontrol,
-    GoodItem
+    GoodItem,
     //ShopCart
+    
   },
   data() {
     return {
@@ -94,9 +62,6 @@ export default {
   },
   //计算属性
   computed: {
-     ...mapGetters({
-      selectedgood: 'getter_selectedgood'
-    }),
     //表示左侧菜单项当前的索引值，就是当前处于哪个食物分类
     currentIndex() {
       //i代表索引值，也就是菜单项的其中一项
@@ -240,7 +205,7 @@ export default {
     }
     .foods-item {
       display: flex;
-      width: 100%;
+      width: 97%;
       height: 100px;
       border-bottom: 1px solid #f3f5f7;
       padding-right: 10px;
