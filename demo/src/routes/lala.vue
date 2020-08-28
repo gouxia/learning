@@ -4,23 +4,23 @@
       <ul class="caidan">
         <!-- :class="{'current':currentIndex===$index}"   表示当我们在遍历右侧食品区的时候，
         索引值等于左侧菜单项的索引值时，左侧菜单项的当前索引值项显示为高亮状态 -->
-        <li
-          v-for="(item, index) in goods"
-          :key="item.name"
-          :class="['caidan1', { 'caidan1-current': currentIndex === index }]"
-          @click="selectMenu(index)"
-        >
+        <li 
+        v-for="item in goods" 
+        :key="item.name" 
+        class="caidan1"
+        :class="{'current':currentIndex === index}"
+        @click="selectMenu(index)"   
+        >  
           <span>{{ item.name }}</span>
         </li>
       </ul>
     </div>
     <div class="foods-wrapper" ref="foodswrapper">
       <div>
-        <div
-          v-for="goodItem in goods"
-          :key="goodItem.name"
-          class="foods-list foods-list-hook"
-        >
+        <div 
+        v-for="goodItem in goods" 
+        :key="goodItem.name"
+        class="foods-list foods-list-hook">
           <div class="foods-title">
             <span>{{ goodItem.name }}</span>
           </div>
@@ -29,8 +29,7 @@
             v-for="foodItem in goodItem.foods"
             :key="foodItem.name"
           >
-          <GoodItem :foodItem="foodItem"></GoodItem>
-            <!-- <div class="left" @click="toCheckDetail(foodItem)">
+            <div class="left" @click="toCheckDetail(foodItem)">
               <img :src="foodItem.image" />
             </div>
             <div class="right">
@@ -57,7 +56,7 @@
                   <cartcontrol :food="foodItem"></cartcontrol>
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -68,19 +67,12 @@
 <script>
 import BScroll from "better-scroll";
 import store from "../store";
-import { mapGetters } from 'vuex'
 import mockData from "../mock.json";
-// import cartcontrol from "../components/cartcontrol";
-import GoodItem  from "../components/GoodItem"
+import cartcontrol from "../components/cartcontrol";
 //import bscroll from
 //import ShopCart from "../components/ShopCart"
 //import ShopCart from "./components/ShopCart";
 export default {
-  components: {
-    // cartcontrol,
-    GoodItem
-    //ShopCart
-  },
   data() {
     return {
       goods: mockData.goods,
@@ -88,19 +80,15 @@ export default {
       listHight: [],
       //定义一个变量用来记录y轴的高度变化
       scrollY: 0,
-      index: "",
-      // currentIndex: 0
+      index:''
     };
   },
   //计算属性
   computed: {
-     ...mapGetters({
-      selectedgood: 'getter_selectedgood'
-    }),
     //表示左侧菜单项当前的索引值，就是当前处于哪个食物分类
     currentIndex() {
       //i代表索引值，也就是菜单项的其中一项
-      for (let i = 0; i < this.listHight.length; i++) {
+      for (let i=0; i< this.listHight.length; i++) {
         //当前索引值的高度
         let height1 = this.listHight[i];
         //下一个索引值的高度
@@ -112,44 +100,65 @@ export default {
       }
       //如果什么都没有返回0
       return 0;
-    },
+    }
   },
-  
+  components: {
+    cartcontrol,
+    //ShopCart
+  },
+  mounted() {
+    //设置滑动的反应时间
+    setTimeout(() => {
+      //调用滑动
+      this._initScroll();
+      //调用计算的高度，每个菜单项所含菜品的高度
+      this._calculateHeight();
+    }, 50);
+
+  },
   methods: {
-    //步骤一：
-    //计算每个菜单项所含菜品的高度，方便左侧菜单项和右侧食物区发生联动的效果
-    _calculateHeight() {
-      let foodsList = this.$refs.foodswrapper.getElementsByClassName(
-        "foods-list-hook"
-      );
-      let height = 0;
-      //把当前的位置高度push进data中刚刚定义的listHight: []数组里去
-      this.listHight.push(height);
-      for (let i = 0; i < foodsList.length; i++) {
-        let item = foodsList[i];
-        height += item.clientHeight;
-        this.listHight.push(height);
-      }
+    selectMenu(index) {
+      let foodsList = this.$refs.foodswrapper.getElementsByClassName('foods-list-hook');
+      let el = foodsList[index];
+      this.foodsScroll.scrollToElement(el,300);
     },
     //better-scroll的方法
     _initScroll() {
+      //console.log(this.$refs)
+      //console.log(this.$refs.menuwrapper)
       this.menuScroll = new BScroll(this.$refs.menuwrapper, {
+        // scrollY: true,
+        // scrollX: true,
         //作用：better-scroll 默认会阻止浏览器的原生 click 事件。
         //当设置为 true，better-scroll 会派发一个 click 事件，我们会给派发的 event 参数加一个私有属性 _constructed，值为 true。
         click: true,
-        //probeType: 3, // listening scroll hook
+        probeType: 3, // listening scroll hook
       });
       this.foodsScroll = new BScroll(this.$refs.foodswrapper, {
+        // scrollY: true,
+        // scrollX: true,
         click: true,
         //这个属性的用处是希望在滚动时能实时的检测滚动的位置
-        probeType: 3,
+         probeType: 3
       });
-      //为foodsScroll 添加监听事件on
-      this.foodsScroll.on("scroll", (pos) => {
+      this.foodsScroll.on('scroll', (pos) => {
         //pos.y滚动时是一个负值，利用Math.abs将其转换为正值
         //这样在滚动时就能实时的知道y轴滚动的高度
         this.scrollY = Math.abs(Math.round(pos.y));
       });
+    },
+    //步骤一：
+    //计算每个菜单项所含菜品的高度，方便左侧菜单项和右侧食物区发生联动的效果
+    _calculateHeight(){
+      let foodsList = this.$refs.foodswrapper.getElementsByClassName('foods-list-hook');
+      
+      let height = 0;
+      this.listHight.push(height);
+      for (let i=0; i < foodsList.length; i++) {
+        let item = foodsList[i];
+        height += item.clientHight;
+        this.listHight.push(height);
+      }
     },
     //当点击时，进入食品的详情页
     toCheckDetail(goodDetail) {
@@ -160,23 +169,7 @@ export default {
       this.$router.push({
         path: "/goodDetail",
       });
-    },
-    selectMenu(index) {
-      let foodsList = this.$refs.foodswrapper.getElementsByClassName(
-        "foods-list-hook"
-      );
-      let el = foodsList[index];
-      this.foodsScroll.scrollToElement(el, 300);
-    },
-  },
-  mounted() {
-    //设置滑动的反应时间
-    setTimeout(() => {
-      //调用滑动
-      this._initScroll();
-      //调用计算的高度，每个菜单项所含菜品的高度
-      this._calculateHeight();
-    }, 50);
+    }
   },
 };
 </script>
@@ -197,8 +190,7 @@ export default {
     width: 80px;
     //height: 200PX;
     //overflow: hidden;
-    background:#f3f6f6;
-   
+    background: #f3f5f7;
     text-align: center;
     .caidan {
       .caidan1 {
@@ -207,12 +199,15 @@ export default {
         border-bottom: 1px solid gainsboro;
         line-height: 14px;
         display: table;
-        &-current {
-          //position: relative;
+        &.current {
+          position: relative;
           margin-top: -1px;
-          background: #ffffff;
-          font-weight: bold;
-          //z-index: 10;
+          background: red;
+          font-weight: 700;
+          z-index: 10;
+          // .text{
+          //   //border-none()
+          // }
         }
         span {
           font-size: 12px;
@@ -225,6 +220,7 @@ export default {
           //border-none();
         }
       }
+
     }
   }
   .foods-wrapper {

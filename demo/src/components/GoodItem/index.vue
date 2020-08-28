@@ -31,7 +31,7 @@
           </div>
           <div class="cart-add" @click="addCart(foodItem)">+</div>
 
-          <cartcontrol></cartcontrol>
+          <!-- <cartcontrol></cartcontrol> -->
         </div>
       </div>
     </div>
@@ -40,8 +40,9 @@
 
 <script>
 import store from "../../store";
-
+// import { mapGetters } from 'vuex'
 export default {
+  name: "good-item",
   props: {
     foodItem: {
       type: Object,
@@ -49,10 +50,14 @@ export default {
     },
   },
   computed: {
-    selectedgood() {
-      return store.state.selectedgood;
+    // ...mapGetters({
+    //   selectedgood: 'getter_selectedgood'
+    // }),
+    selectedgood(){
+      return store.state.selectedgood
     },
     getGoodNum() {
+      console.log('selectedgood', this.selectedgood);
       const { name } = this.foodItem;
       const curIndex = this.selectedgood.findIndex(
         (item) => item.name === name

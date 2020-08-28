@@ -20,13 +20,18 @@
     </div>
     <!-- 购物车小球动画实现 利用了vue的过渡-->
     <div class="ball-container">
-      <div v-for="(ball, ballIndex) in balls" :key="`${ballIndex}ball`" v-show="ball.show" transition="drop" class="ball">
+      <div
+        v-for="(ball, ballIndex) in balls"
+        :key="`${ballIndex}ball`"
+        v-show="ball.show"
+        transition="drop"
+        class="ball"
+      >
         <div class="inner"></div>
       </div>
-
     </div>
     <!-- 购物车详情页(列表) -->
-     <!-- <div class="shopcart-list" v-show="listShow">
+    <!-- <div class="shopcart-list" v-show="listShow">
       <div class="list-header">
         <h1 class="title">购物车</h1>
         <span class="empty">清空</span>
@@ -53,31 +58,29 @@
 //import cartcontrol from '../cartcontrol'
 export default {
   components: {
-   //cartcontrol
+    //cartcontrol
   },
   data() {
     return {
       //利用了vue中的过渡，使用css过渡
       balls: [
         {
-          show: false
+          show: false,
         },
         {
-          show: false
+          show: false,
         },
         {
-          show: false
+          show: false,
         },
         {
-          show: false
+          show: false,
         },
         {
-          show: false
-        }
-      ]
-    }
-
-
+          show: false,
+        },
+      ],
+    };
   },
   props: {
     //选购商品，购物车所有的状态变化都依赖于selectFoods，selectFoods是通过父组件传过来的
@@ -90,7 +93,6 @@ export default {
             count: 8,
           },
         ];
-        
       },
     },
     //配送费
@@ -147,10 +149,10 @@ export default {
     },
   },
   methods: {
-     drop(el) {
+    drop(el) {
       console.log(el);
-     }
-  }
+    },
+  },
 };
 </script>
 
@@ -273,12 +275,11 @@ export default {
           width: 16px;
           height: 16px;
           border-radius: 50%;
-          background: rgb(0,160,220);
-          transition:  all 0.4s;
+          background: rgb(0, 160, 220);
+          transition: all 0.4s;
         }
       }
     }
-
   }
 }
 </style>
