@@ -1,0 +1,45 @@
+.home-header-warpper {
+  width: 10rem;
+  height: 1.3rem;
+  top: 0;
+  z-index: 99;
+  position: absolute;
+  // 后期删除
+  .login-nav {
+    width: 10rem;
+    padding-top: 0.25rem;
+    .user-login-icon {
+      margin-left: 0.266667rem;
+      width: 0.733333rem;
+      height: 0.733333rem;
+      background-color: red;
+      float: left;
+      background: url("../images/home_login_icon.png") no-repeat center;
+      background-size: 0.733333rem;
+      display: block;
+
+    }
+    .user-login-text {
+      height: 0.733333rem;
+      margin-left: 0.266667rem;
+      color: #fff;
+      text-shadow: 0px 0.05rem 0.05rem rgba(11, 3, 6, 0.4);
+      float: left;
+      p {
+        align-items: center;
+        font-size: 0.4375rem /* 7/16 */;
+      }
+    }
+    .IconMask {
+      float: right;
+      background-color: red;
+      width: 0.73333rem;
+      height: 0.73333rem;
+      margin-right: 0.266667rem;
+      position: relative;
+      cursor: pointer;
+      background: url("../images/home_header_action_new.png") no-repeat center;
+      background-size: 0.733333rem;
+    }
+  }
+}

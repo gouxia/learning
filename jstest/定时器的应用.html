@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: cadetblue;
+        position: absolute;
+        left: 0;
+      }
+      #box2 {
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+        position: absolute;
+        left: 0;
+        top: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+    <button id="btn02">点击按钮以后box1向左移动</button>
+    <button id="btn03">点击按钮以后box2向左移动</button>
+    <br />
+    <br />
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <script>
+      var box1 = document.getElementById("box1");
+      var box2 = document.getElementById("box2");
+      var btn01 = document.getElementById("btn01");
+      var btn02 = document.getElementById("btn02");
+      var btn03 = document.getElementById("btn03");
+      //   定义一个变量用来保存定时器的标识
+      var timer;
+      //  点击按钮使box1向右移动（left值增大）
+      btn01.onclick = function () {
+        //   调用move函数
+        move(box1, 300, 10);
+      };
+      //  点击按钮使box1向左移动（left值减小）
+      btn02.onclick = function () {
+           //   调用move函数
+        move(box1, 0, -10);
+      };
+      btn03.onclick = function () {
+           //   调用move函数
+        move(box2, 300, 10);
+      }
+      // 参数：
+      //      obj：要执行动画的对象
+      //      target:执行动画的目标位置
+      //      speed：移动的速度（正数向左移动，负数向右移动）
+      function move(obj, target, speed) {
+        // 关闭上一个定时器，当你多次点击按钮时，obj的移动速度不会变化
+        clearInterval(timer);
+        //  开启一个定时器，用来执行动画效果
+        timer = setInterval(function () {
+          // 获取原来的obj的left值
+          var oldValue = obj.offsetLeft;
+          //   在旧值的基础上减少距离左边的距离
+          var newValue = oldValue + speed;
+          // 向左移动时，需要判断newValue是否小于target
+          // 向右移动时，需要判断newValue是否大于target
+          if (
+            (speed < 0 && newValue < target) ||
+            (speed > 0 && newValue > target)
+          ) {
+            newValue = target;
+          }
+          //   将新值设置给obj
+          obj.style.left = newValue + "px";
+          // 当元素移动到target，使其停止执行动画
+          if (newValue == target) {
+            // 关闭定时器
+            clearInterval(timer);
+          }
+        }, 300);
+      }
+    </script>
+  </body>
+</html>

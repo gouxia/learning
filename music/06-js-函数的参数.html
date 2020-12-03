@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 定义一个用来求两个数和的函数,可以在函数的()中来指定一个或多个形参（形式参数）
+        // 声明形参就相当于在函数内部声明了对应的变量
+        function sum(a,b) {
+            console.log(a+b)
+        }
+        // 在调用函数时，可以在()中指定实参(实际参数)
+        // 实参将会赋值给还是中对应的形参
+        sum(1,3);
+        // 调用函数时解析器不会检查实参的类型,所以要注意是否接收非法的参数，如果有可能则需要对参赛进行类型的检查
+        // 调用函数时解析器也不会检查传入实参的数量，多余的实参不会被赋值
+        sum(123,"hello");
+
+
+        // 可以使用return 来设置函数的返回值
+        // 语法：
+        //      return 值
+        // return后的值将会作为函数的执行结果返回，我们可以定义一个变量来接收该结果，return后的语句都不会执行，使用return可以结束整个函数
+        // return返回值可以是任意的数据类型，也可以是一个对象，也可以是一个函数
+        function sum1(a,b) {
+            var c = a + b;
+            return c;
+        }
+        // 变量res的值就是函数的执行结果，函数返回什么result的值就是什么
+        var res = sum1(5,6);
+        console.log(res);
+    </script>
+</body>
+</html>

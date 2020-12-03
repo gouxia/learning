@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <from method="post" action="">
+      你爱好的水果？
+      <br />
+      <input type="checkbox" id="checkedAllBox" />全选/全不选
+      <br />
+      <input type="checkbox" name="items" value="苹果" />苹果
+      <input type="checkbox" name="items" value="香蕉" />香蕉
+      <input type="checkbox" name="items" value="芒果" />芒果
+      <input type="checkbox" name="items" value="橘子" />橘子
+      <br />
+      <input type="button" id="checkedAllBtn" value="全选" />
+      <input type="button" id="checkNoBtn" value="全不选" />
+      <input type="button" id="checkRevBtn" value="反选" />
+      <input type="button" id="sendBtn" value="提交" />
+    </from>
+    <script>
+      var checkedAllBox = document.getElementById("checkedAllBox");
+      var checkedAllBtn = document.getElementById("checkedAllBtn");
+      var checkNoBtn = document.getElementById("checkNoBtn");
+      var checkRevBtn = document.getElementById("checkRevBtn");
+      var sendBtn = document.getElementById("sendBtn");
+      checkedAllBox.onclick = function() {
+        var items = document.getElementsByName("items");
+        for (var i = 0; i < items.length; i++) {
+            items[i].checked = checkedAllBox.checked;
+        }
+      };
+      checkedAllBtn.onclick = function() {
+        // 获取四个多选框
+        var items = document.getElementsByName("items");
+        // 遍历items
+        for (var i = 0; i < items.length; i++) {
+          // 设置四个多选框变成选中状态，通过多选框的checked属性可以用来获取或设置多选框的选中状态
+          items[i].checked = true;
+        }
+      };
+      checkNoBtn.onclick = function() {
+        // 获取四个多选框
+        var items = document.getElementsByName("items");
+        // 遍历items
+        for (var i = 0; i < items.length; i++) {
+          // 设置四个多选框变成全不选状态，通过多选框的checked属性可以用来获取或设置多选框的选中状态
+          items[i].checked = false;
+        }
+      };
+      checkRevBtn.onclick = function() {
+        // 获取四个多选框
+        var items = document.getElementsByName("items");
+        // 遍历items
+        for (var i = 0; i < items.length; i++) {
+          //    判断多选框的状态
+          if (items[i].checked){
+            // 如果items[i].checked的值为true，证明多选框已选中，则设置为没选中
+            items[i].checked = false;
+          }else{
+            // 证明多选框没选中，则设置为全选中
+            items[i].checked = true;
+          }
+        }
+      };
+    //   为sendBtn绑定单击响应函数
+      sendBtn.onclick = function() {
+        // 遍历items
+        var items = document.getElementsByName("items");
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].checked){
+            // 如果items[i].checked的值为true，则弹出选中的选项内容
+            alert(items[i].value);
+          }
+        }
+    };
+    </script>
+  </body>
+</html>

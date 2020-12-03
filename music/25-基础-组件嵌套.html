@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 此时，父组件是newVue这个根组件，子组件是h-p -->
+      <h-p></h-p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 全局组件
+      Vue.component("h-p", {
+        template: `
+          <div>
+              <h3>我是组件h-p</h3><br>
+         </div>
+             `,
+        data() {
+          return {
+          };
+        },
+      });
+
+
+      var app = new Vue({
+        el: "#app",
+        data() {
+          return {};
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

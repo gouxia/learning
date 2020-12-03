@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="img01" src="./09.png">
+    <script>
+        var Img = document.getElementById("img01");
+        //实现当点击图片时，可以更换图片的功能
+        Img.onclick = function () {
+           // alert(Img.src);
+            if (Img.src == 'file:///D:/myProject/learning/jstest/09.png') {
+                Img.src = './10.png';
+            }
+        }
+    </script>
+</body>
+</html>

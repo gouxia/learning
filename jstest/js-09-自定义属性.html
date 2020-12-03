@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            width: 80px;
+            height: 100px;
+            background: lightgray;
+            margin-top: 50px;
+            margin-left: 40px;
+        }
+    </style>
+    <script>
+        window.onload = function (){
+            var Btn = document.getElementsByTagName('input');
+            var arr = ['狗霞','王狗霞','王狗狗','狗霞霞'];
+            for(var i=0; i<Btn.length; i++){
+                //为三个按钮添加 num=0
+                Btn[i].num = 0;
+                Btn[i].onclick = function (){
+                    this.value = arr[this.num]; 
+                    this.num++;
+                    if(this.num === arr.length){
+                        this.num = 0;
+                    }
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="0"/>
+    <input type="button" value="0"/>
+    <input type="button" value="0"/>
+</body>
+</html>

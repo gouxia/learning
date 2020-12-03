@@ -55,7 +55,10 @@ export default {
     getGoodNum() {
       //console.log('selectedgood', this.selectedgood);
       const { name } = this.foodItem;
+      // console.log(name);
+      // console.log(this.selectedgood);
       const curIndex = this.selectedgood.findIndex(
+        
         (item) => item.name === name
       );
       if (curIndex > -1) {

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      .photo {
+        width: 500px;
+        height: 500px;
+        margin: 20px auto;
+      }
+      .btn {
+        width: 100px;
+        height: 50px;
+        margin: 10px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="photo">
+      <img id="img1" src="./1.png" />
+    </div>
+    <div class="btn">
+      <button id="btn01">开始</button>
+      <button id="btn02">停止</button>
+    </div>
+    <script>
+      var img1 = document.getElementById("img1");
+      var btn01 = document.getElementById("btn01");
+      var btn02 = document.getElementById("btn02");
+      // 创建一个数组来保存图片的路径
+      var imgArr = ["./1.png", "./2.png", "./3.png", "./01.png"];
+      //   创建一个变量，用来保存当前图片的索引
+      var index = 0;
+      //   定义一个全局变量，用来保存定时器的标识
+      var timer;
+      btn01.onclick = function () {
+        // 开启一个定时器用来展示图片的切换
+        timer = setInterval(function () {
+          // 使索引自增
+          index++;
+          // 当索引值超过imgArr数组中的图片数量时，就让索引值等于0
+          if (index > imgArr.length - 1) {
+            index = 0;
+          }
+          // 修改img1的src属性
+          img1.src = imgArr[index];
+        }, 2000);
+      };
+      btn02.onclick = function () {
+        //   当点击停止按钮，关闭图片自动切换的定时器
+        clearInterval(timer);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+        <input type="text" v-model="message">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: '',
+        },
+        //watch选项
+        // 作用：检测已经存在的属性message，来监听并响应数据的实时变化
+        // 使用场景：当需要数据变化时执行异步或开销较大的操作时，watch这个方式是最有用的
+        watch: {
+          // 被检测的数据名：函数(){}
+        //   当被检测的属性message变化时，会触发方法
+        // newVal为新值，oldVal为旧值
+          message(newVal,oldVal) {
+              console.log(newVal,oldVal)
+
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+        appendChild() -添加子节点
+        replaceChild() -替换子节点
+        removeChild() -删除子节点
+        insertBefore() -在指定的子节点前面插入新的子节点
+        createElement() -创建元素节点
+        createTextNode() -创建文本节点
+
+     -->
+    <style type="text/css">
+      #total {
+        display: flex;
+      }
+      .inner {
+        width: 300px;
+        height: 100px;
+        border: 1px solid rosybrown;
+        padding: 20px;
+        margin-left: 300px;
+        margin-top: 70px;
+      }
+
+      ul {
+        display: flex;
+        padding-top: 20px;
+      }
+      ul li {
+        justify-content: center;
+        background-color: greenyellow;
+        margin-right: 10px;
+        list-style: none;
+        padding: 5px;
+      }
+      .btnList {
+        margin-top: 50px;
+        margin-left: 80px;
+      }
+
+      .btnList button {
+        width: 300px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="total">
+      <div class="inner">
+        <p>
+          你喜欢那个城市？
+        </p>
+        <ul id="city">
+          <li id="bj">北京</li>
+          <li>上海</li>
+          <li>东京</li>
+          <li>首尔</li>
+        </ul>
+      </div>
+      <div class="btnList">
+        <div><button id="btn01">创建一个"广州"节点，添加到#city下</button></div>
+        <div><button id="btn02">将"广州"节点插入到#bj前面</button></div>
+        <div><button id="btn03">使用"广州"节点替换#bj节点</button></div>
+        <div><button id="btn04">删除#bj节点</button></div>
+        <div><button id="btn05">读取#city的html代码</button></div>
+        <div><button id="btn06">设置#bj内的html代码</button></div>
+      </div>
+    </div>
+    <script>
+      var btn01 = document.getElementById("btn01");
+      var btn02 = document.getElementById("btn02");
+      var btn03 = document.getElementById("btn03");
+      var btn04 = document.getElementById("btn04");
+      var btn05 = document.getElementById("btn05");
+      var btn06 = document.getElementById("btn06");
+      btn01.onclick = function() {
+        // 创建一个"广州"节点，添加到#city下
+        var city = document.getElementById("city");
+        // 创建一个<li></li>元素节点，document.createElement(),可以用于创建一个元素节点对象，它需要一个标签名作为参数，将会根据该标签名创建元素节点对象
+        // 并将创建好的对象作为返回值返回
+        var li = document.createElement("li");
+        // 创建广州文本节点
+        var gztext = document.createTextNode("广州");
+        // 将广州设置为li的子节点
+        li.appendChild(gztext);
+        // 将广州添加到city下
+        city.appendChild(li);
+        alert(city);
+      };
+      btn02.onclick = function() {
+        // 将"广州"节点插入到#bj前面
+        var bj = document.getElementById("bj");
+        var city = document.getElementById("city");
+        // 创建li元素
+        var li = document.createElement("li");
+        // 创建广州文本节点
+        var gztext = document.createTextNode("广州");
+        // 将广州设置为li的子节点
+        li.appendChild(gztext);
+        // 将广州节点添加到bj的前面
+        // insertBefore可以在指定的子节点钱插入新的子节点
+        // 语法：父节点.insertBefore(新节点，旧结点)
+        city.insertBefore(li,bj);
+        alert(city);
+      };
+      btn03.onclick = function() {
+        // 使用"广州"节点替换#bj节点
+        var bj = document.getElementById("bj");
+        var city = document.getElementById("city");
+         // 创建li元素
+         var li = document.createElement("li");
+        // 创建广州文本节点
+        var gztext = document.createTextNode("广州");
+        // 将广州设置为li的子节点
+        li.appendChild(gztext);
+        city.replaceChild(li,bj);
+        alert(city);
+      };
+      btn04.onclick = function() {
+        // 删除#bj节点
+        var bj = document.getElementById("bj");
+        var city = document.getElementById("city");
+        city.removeChild(bj);
+        alert(city);
+      };
+
+
+      btn05.onclick = function() {
+        // 读取#city的html代码
+        var city = document.getElementById("city");
+        alert(city.innerHTML);
+      };
+      btn06.onclick = function() {
+        // 设置#bj内的html代码
+        var bj = document.getElementById("bj");
+        bj.innerHTML = "娃哈哈"
+        alert(bj.innerHTML);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用组件 -->
+        <h-p></h-p>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script>
+        //   组件：两类（全局+局部） 三步
+        // 全局组件
+        // 1.定义组件 Vue.component(组件名，{选项})
+        // 2.{template：`标签`，data等}
+        // 3.在试图中通过组件名使用（自定义标签）
+        // 4.在后面的newVue所管理的视图中使用
+        // 组件名建议使用：小写字母-小写字母
+        // template必须有一个根节点
+        // data(){return {}} data必须是带有返回值的函数
+        Vue.component("h-p", {
+          template: `
+          <div>
+              <h3>我是组件h-p</h3><br>
+              <p>{{num}}</p>
+         </div>
+             `,
+          data() {
+            return {
+              num: 100
+            };
+          }
+        });
+  
+        
+        var app = new Vue({
+          el: "#app"
+        });
+      </script>
+</body>
+</html>

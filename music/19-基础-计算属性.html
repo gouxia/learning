@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 计算属性
+        场景：当数据A的逻辑很复杂时，把A这个数据写在计算属性中
+        代码位置:通过选项computed：{计算属性a：值}
+        值：带有返回值retrun的函数
+        计算属性a和data中的数据用法一样
+     -->
+</head>
+<body>
+    <div id="app">
+        {{message2}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+            // 如果data中的数据b依赖了数据a
+            //此时 把数据b改写在计算属性computed中
+            //特点：当被依赖的数据a发生变化时，计算属性b也会自动发生变化
+          message: "狗霞霞",
+        },
+        // 选项computed：{}
+        // str是带有返回值的函数
+        // str用法和data中的数据用法一样
+        computed: {
+            message2:function() {
+                return this.message+"爱吃鱼！"
+            }
+        }
+      });
+    </script>
+</body>
+</html>

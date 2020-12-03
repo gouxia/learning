@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       <p>methods中的方法</p>
+       <p>{{fn1()}}</p>
+       <p>{{fn1()}}</p>
+       <p>{{fn1()}}</p>
+       <p>computed中的方法</p>
+       <p>{{fn2}}</p>
+       <p>{{fn2}}</p>
+       <p>{{fn2}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue!",
+        },
+        methods: {
+            fn1() {
+                console.log("狗霞霞爱吃酸菜鱼！");
+                // 返回fn1方法被调用的时间
+                return new Date()
+            }
+        },
+        // 计算属性的方法
+        // 前提：当计算属性fn2没有依赖data中的数据时
+        // 第一次使用计算属性时，会把第一次的结果进行缓存
+        // 后面再使用几次计算属性，都会去第一次的结果中进行查找
+        // 如果依赖了data中的数据，当data中的数据变化，computed中的数据会自动更新
+        // 当计算属性在用时，不加(),这就是和methods的区别，methods在用时要加()
+        computed: {
+            fn2() {
+                console.log("狗霞爱吃肉！");
+                // 返回fn1方法被调用的时间
+                return new Date()
+            }
+        }
+      });
+    </script>
+</body>
+</html>

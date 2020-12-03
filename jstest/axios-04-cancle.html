@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="getProducts1()">获取商品列表1</button><br />
+    <button onclick="getProducts2()">获取商品列表2</button><br />
+    <button onclick="cancelReq()">取消请求</button><br />
+
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+    <script>
+        //最终无论执行成功或失败cancel函数都会被设置为空
+      let cancel; //用于保存取消请求的函数
+      function getProducts1() {
+        axios({
+          url: "http://localhost:4000/products1",
+          cancelToken: new axios.CancelToken((c) => {
+            //c是用于取消当前请求的函数
+            //保存取消请求的函数，用于之后可能取消当前请求
+            cancel = c;
+          }),
+        }).then(
+          response => {
+               //如果成功，将执行response，执行以后将cancel函数设置为空
+            cancel = null;
+            console.log("请求1成功了", response.data);
+          },
+          error => {
+               //如果失败，将执行error，执行以后将cancel函数设置为空
+            cancel = null;
+            console.log(error.message);
+          }
+        );
+      }
+      function getProducts2() {
+        axios({
+          url: "http://localhost:4000/products2",
+        }).then((response) => {
+          console.log("请求2成功了", response.data);
+        });
+      }
+
+      function cancelReq() {
+        //先判断cancel是否是一个函数
+        if (typeof cancel === "function") {
+          //(调用)执行取消请求函数
+          cancel("强制取消请求");
+        }
+      }
+    </script>
+  </body>
+</html>

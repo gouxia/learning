@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 1.设置链接 -->
+        <router-link to="/home">首页</router-link>
+        <router-link to="/goods">商品</router-link>
+        <router-link to="/rating">评价</router-link>
+        <button @click="changeUrl()">音乐</button>
+        <!-- 2.设置容器 -->
+        <router-view></router-view>
+      </div>
+      <script src="https://unpkg.com/vue/dist/vue.js"></script>
+      <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+      <script>
+        // <!-- 3.提供要渲染的组件 -->
+        var comA = {
+          template: `<div>首页</div>`,
+        };
+        var comB = {
+          template: `<div>商品</div>`,
+        };
+        var comC = {
+          template: `<div>评价</div>`,
+        };
+        //   4.配置路由（设置路由匹配规则）
+        var router = new VueRouter({
+          routes: [
+            {
+              path: "/home",
+              component: comA,
+            },
+            {
+              path: "/goods",
+              component: comB,
+            },
+            {
+              path: "/rating",
+              component: comC,
+            },
+          ],
+        });
+  
+        // 5.在实例app中挂载路由
+        var app = new Vue({
+          el: "#app",
+          router,
+          methods: {
+            changeUrl() {
+                this.$router.push({
+                    path:'/goods'
+                })
+            }
+          }
+        });
+      </script>
+</body>
+</html>

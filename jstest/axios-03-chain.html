@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>拦截器：axios的处理链流程</title>
+  </head>
+  <body>
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+    <script>
+      //添加请求拦截器（回调函数）,执行顺序：请求拦截器是在发请求之前执行
+      axios.interceptors.request.use(
+        //请求成功返回一个配置（config）
+        config => {
+          // console.log("request interceptor1 onResolved()");
+          return config;
+        },
+        //请求失败
+        error => {
+          //console.log("request interceptor1 onRejected()");
+          return Promise.reject(error);
+        }
+      );
+
+
+      //添加响应拦截器，执行顺序：先调响应拦截器的回调，最后调.then()或者.catch()的回调
+      axios.interceptors.response.use(
+        //响应成功
+        (response) => {
+          //console.log("response interceptor1 onResolved()");
+          return response;
+        },
+        //响应失败
+        (error) => {
+          //console.log("response interceptor1 onResolved()");
+          return Promise.reject(error);
+        }
+      );
+
+      axios
+        .get("http://localhost:/posts")
+        .then((response) => {
+          console.log("data", response.data);
+        })
+        .catch((error) => {
+          console.log("error", error.message);
+        });
+    </script>
+  </body>
+</html>

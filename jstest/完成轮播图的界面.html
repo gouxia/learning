@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #outer {
+        width: 520px;
+        height: 350px;
+        margin: 50px auto;
+        background-color: greenyellow;
+        position: relative;
+        padding: 10px 0;
+        /* overflow: hidden; */
+      }
+      /* 为ul设置宽度，li中的图片才能向左浮动 */
+      #imgList {
+        position: absolute;
+        list-style: none;
+      }
+      #imgList li {
+        float: left;
+        margin: 0 10px;
+      }
+      #nav {
+        position: absolute;
+      }
+      #nav a {
+        width: 15px;
+        height: 15px;
+        background-color: rgb(175, 82, 82);
+        float: left;
+        margin-right: 10px;
+        margin-top: 330px;
+      }
+      /* 设置鼠标移入的效果 */
+      #nav a:hover {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <ul id="imgList">
+        <li><img src="./img1.png" /></li>
+        <li><img src="./img2.png" /></li>
+        <li><img src="./img3.png" /></li>
+        <li><img src="./img4.png" /></li>
+        <li><img src="./img5.png" /></li>
+        <li><img src="./img6.png" /></li>
+      </ul>
+      <!-- 导航按钮 -->
+      <div id="nav">
+        <a href="javascript:;"> </a>
+        <a href="javascript:;"> </a>
+        <a href="javascript:;"> </a>
+        <a href="javascript:;"> </a>
+        <a href="javascript:;"> </a>
+        <a href="javascript:;"> </a>
+      </div>
+    </div>
+
+    <script>
+      var imgList = document.getElementById("imgList");
+      var imgArr = document.getElementsByTagName("img");
+      // 设置ul的 宽度，宽度根据图片的数量进行自动的变化
+      imgList.style.width = 520 * imgArr.length + "px";
+      // 设置导航按钮居中
+      var outer = document.getElementById("outer");
+      var nav = document.getElementById("nav");
+      //   设置nav的left的值
+      nav.style.left = (outer.offsetWidth - nav.offsetWidth) / 2 + "px";
+      //   获取所有的a
+      var aAll = document.getElementsByTagName("a");
+      //   默认显示的图片的索引为0，也就是第一张图片
+      var index = 0;
+      // 设置第一张显示的图片为鼠标选中状态
+      aAll[index].style.backgroundColor = "black";
+      //   设置点击超链接按钮切换图片
+      for (var i = 0; i < aAll.length; i++) {
+        //   为每个超链接都添加一个num属性，当i为几时，num就为几，这样就可以记录你点击的第几个超链接按钮，有利于之后当你点击第几个超链接，为点击的超链接绑定图片
+        aAll[i].num = i;
+        //   为超链接绑定单击响应函数
+        aAll[i].onclick = function () {
+          // 获取点击超链接的num值,此时this就是aAll[i]
+          //   alert("num = "+this.num);
+          //   获取点击超链接的num的值，并将其设置为index，index为图片的索引,通过num来设置index的值来更改要显示的图片
+          index = this.num;
+          // 通过index切换图片
+          // 第一张索引为0 0
+          // 第二张索引为1 -520
+          // 第三张索引为2 -1040
+          //   .....
+          imgList.style.left = -520 * index + "px";
+          //   修改正在选中的超链接a的状态
+          // 调用方法
+          setA();
+        };
+      }
+      //   调用自动切换函数图片
+      autoChange();
+      //   创建一个方法，用来设置选中的a的状态
+      var setA = function () {
+        // 遍历所有的超链接a将他们的背景颜色设置为红色,此处将 aAll[i].style.backgroundColor = "" 设置为空，这样就可以用样式表中的样式
+        for (var i = 0; i < aAll.length; i++) {
+          aAll[i].style.backgroundColor = "";
+        }
+        // 将正在选中的超链接a设置为黑色
+        aAll[index].style.backgroundColor = "black";
+      };
+      
+      //   创建一个函数，用来开启自动切换图片
+      var autoChange = function () {
+        // 开启一个定时器用来展示图片的切换
+        setInterval(function () {
+          // 使索引自增
+          index++;
+          // 当索引值超过imgArr数组中的图片数量时，就让索引值等于0
+          if (index > imgArr.length - 1) {
+            index = 0;
+          }
+          // 修改img1的src属性
+          img.src = imgArr[index];
+        }, 2000);
+      };
+    </script>
+  </body>
+</html>

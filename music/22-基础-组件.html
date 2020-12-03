@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <span>{{count1}}</span><br />
+      <button @click="changeCount1">按钮</button> -->
+      <!-- 使用组件 -->
+      <span-btn></span-btn>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.component("span-btn", {
+        template: `
+        <div>
+            <span>{{count}}</span><br>
+            <button @click="changeCount">按钮</button>
+       </div>
+           `,
+        data() {
+          return {
+            count: 1,
+          };
+        },
+        methods: {
+          changeCount() {
+            this.count++;
+          },
+        },
+      });
+
+      
+      var app = new Vue({
+        el: "#app",
+        data: {
+          count1: 0,
+        },
+        methods: {
+          changeCount1() {
+            this.count1++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

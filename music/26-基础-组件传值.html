@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+        在子组件中使用父组件的数据
+        1.props:['接收者数据a']
+        2.使用子组件时：a="父组件data中的数据"
+        3.在子组件使用a
+        注意：该数据a在子组件中不能修改，因为子组件的a的值来源于父组件传过来的值，没有权利更改值
+     -->
+  </head>
+  <body>
+    <div id="app">
+      <child-a :a="msg"></child-a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      // 全局组件充当子组件
+      Vue.component("child-a", {
+        //   目的：要在子组件中使用数据a，数据a的值来源于父组件
+        template: `
+          <div>
+              <h4>我是子组件child-a {{a}}</h4><br>
+         </div>
+             `,
+       
+            //  选项props：['a','b']
+            // props中的值是数据
+            // props中的数据的值来源于父组件
+            // props中的数据a和data中的数据用法一样
+            // 此时a也是子组件child-a的属性
+            props: ['a']
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data() {
+          return {
+              msg:'我是王狗霞！'
+          };
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

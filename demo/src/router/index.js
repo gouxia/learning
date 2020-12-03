@@ -14,6 +14,7 @@ const routes = [
   {
     path: "/store",
     component: () => import("../routes/store.vue"),
+    //嵌套式路由，在store中嵌套三个子路由
     children: [
       {
         path: "/",

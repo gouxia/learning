@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 700px;
+            margin: 100px auto;
+        }
+        #app {
+            width: 600px;
+        }
+        .tb {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .tb th {
+            background-color: #0094ff;
+            color: white;
+        }
+        .tb td,
+        .tb th {
+            padding: 5px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        .add {
+            padding: 5px;
+            border: 1px solid black;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+    <div class="add">
+        品牌名称：
+        <input type="text" v-model="itemname">
+        <input type="button" @click="addItem()" value="添加">
+    </div>
+    <!-- 搜索思路：表格最终展示的数据v-for遍历->list->依赖了搜索框中的数据
+        1.给input输入框绑定新数据searchVal
+        2.提供v-for遍历的数组->计算属性中newlist
+        因为搜索出来的得数据依赖于data中的list[]数组中的数据
+     -->
+    <div class="add">
+        品牌名称：
+        <input type="text" placeholder="请输入搜索条件" v-model="searchVal">
+    </div>
+    <div>
+        <table class="tb">
+            <tr>
+                <th>编号</th>
+                <th>品牌名称</th>
+                <th>创立时间</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(item,i) in newlist" :key="i">
+                <td>{{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.date}}</th>
+                <td>
+                 <a href="#" @click="deleItem(i)">删除</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+          el: "#app",
+          data: {
+            list : [
+            {
+                name: 'TCL',
+                date: new Date()
+            },
+            {
+                name: '小米',
+                date: new Date()
+            },
+            {
+                name: '苹果',
+                date: new Date()
+            },
+        ],
+            //输入框要绑定的数据
+            itemname:'',
+            //搜索框中绑定的数据
+            searchVal:''
+            
+          },
+          computed: {
+              newlist() {
+                  //如果没有搜索就返回原数组的值，如果者数组中没有和搜索条件相符合的就返回空数组，如果有和搜索条件相符合的就返回筛选后的数组的元素
+                // 遍历this.list，判断(数组元素.name)是否以this.searchVal开头，也就是是否与搜索的商品名称相同，
+                // 如果相同就把数组中满足条件的元素保存在新数组中返回
+                // filter 是js自己的方法和vue中的过滤器不一样 js中的作用是过滤/筛选数组
+                  return this.list.filter((item)=>{
+                    //   判断输入的搜索的信息开头是否与item.name相同，如果相同者返回该元素
+                     return item.name.startsWith(this.searchVal)
+                  })
+              }
+
+          },
+          methods: {
+              addItem() {
+             //添加商品
+             this.list.unshift({
+                 name:this.itemname,
+                 date:new Date()
+             })
+              },
+              //删除商品 ,index为形参，删除的索引，当点击删除按钮时，传入一个实参
+              deleItem(index) {
+                // splice(索引，长度)
+                this.list.splice(index,1)              
+              }
+          }
+        })
+      </script>
+
+
+      <script>
+        //   filter是数组自带的方法
+        // 遍历数组 可以把满足条件的元素添加到新数组中，并且返回新数组
+        // var arr = [].filter((item)=>{ return  条件})
+        var arr = [1,2,3].filter((item)=>{
+            console.log(item)
+            // item>1,2,3
+            // 把数组中item>1的元素进行筛选
+            return item>1
+        })
+        console.log(arr)
+
+        const res = "abc".startsWith("a")
+        console.log(res)
+
+      </script>
+</body>
+</html>

@@ -20,7 +20,7 @@
           </div>
           <div class="text">{{ seller.supports[0].description }}</div>
         </div>
-        <div v-if="seller.supports" class="support-count" @click="showDetail">
+        <div v-if="seller.supports" class="support-count">
           <span class="count">{{ seller.supports.length }}个</span>
           <i class="tubiao"> > </i>
         </div>

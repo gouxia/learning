@@ -1,5 +1,5 @@
 <template>
-  <div class="ratings-gouwu" @click="foldDetail">
+  <div class="ratings-gouwu">
     <div class="gouwuleft">
       <div class="gouwulogo" @click="foldDetail">
         <!-- ：class 为动态切换多个class，原来的class不会被覆盖，也可以根据条件切换class -->
@@ -24,73 +24,23 @@
         <div class="list-header">
           <h1 class="title">购物车</h1>
           <span class="empty">清空</span>
+          <!-- <span class="back"></span> -->
         </div>
         <div class="list-content">
           <ul>
-            <!-- <li class="food" v-for="item in selectFoods" :key="item.price">
-            <span class="name">{{ item.name }}</span>
-            <div class="price">
-              <span>￥{{ item.price * item.num }}</span>
-            </div>
-          </li> -->
-            <li class="food">
-              <div class="food-name">莲子核桃黑米粥</div>
-              <div class="food-price">￥10</div>
+            <li class="food" v-for="item in selectedgood" :key="item.name">
+              <div class="food-name">{{item.name}}</div>
+              <div class="food-price">￥{{item.price}}</div>
               <div class="food-shop">
                 <div
                   class="cart-decrease"
-                  v-show="getGoodNum > 0"
-                  @click="descreaseCart(foodItem)"
+                  v-show="item.num > 0"
+                  @click="descreaseCart(item)"
                 ></div>
-                <div class="cart-count" v-show="getGoodNum > 0">
-                  {{getGoodNum}}
+                <div class="cart-count" v-show="item.num > 0">
+                 {{item.num}}
                 </div>
-                <div class="cart-add" @click="addCart(foodItem)"></div>
-              </div>
-            </li>
-            <li class="food">
-              <div class="food-name">莲子核桃黑米粥</div>
-              <div class="food-price">￥10</div>
-              <div class="food-shop">
-                <div class="cart-decrease">
-                  
-                </div>
-                <div class="cart-count">
-                  0
-                </div>
-                <div class="cart-add">
-                  
-                </div>
-              </div>
-            </li>
-            <li class="food">
-              <div class="food-name">莲子核桃黑米粥</div>
-              <div class="food-price">￥10</div>
-              <div class="food-shop">
-                <div class="cart-decrease">
-                  
-                </div>
-                <div class="cart-count">
-                  0
-                </div>
-                <div class="cart-add">
-                  
-                </div>
-              </div>
-            </li>
-            <li class="food">
-              <div class="food-name">莲子核桃黑米粥</div>
-              <div class="food-price">￥10</div>
-              <div class="food-shop">
-                <div class="cart-decrease">
-                  
-                </div>
-                <div class="cart-count">
-                  0
-                </div>
-                <div class="cart-add">
-                  
-                </div>
+                <div class="cart-add" @click="addCart(item)"></div>
               </div>
             </li>
           </ul>
@@ -101,30 +51,15 @@
 </template>
 
 <script>
-// import GoodItem from "../GoodItem";
 import store from "../../store";
 export default {
-  components: {
-    // GoodItem,
-  },
+  
   data() {
     return {
       detailFold: false,
     };
   },
   props: {
-    //选购商品，购物车所有的状态变化都依赖于selectFoods，selectFoods是通过父组件传过来的
-    selectFoods: {
-      type: Array,
-      default() {
-        return [
-          {
-            price: 5,
-            count: 8,
-          },
-        ];
-      },
-    },
     //配送费
     deliveryPrice: {
       type: Number,
@@ -134,28 +69,25 @@ export default {
     minPrice: {
       type: Number,
       default: 20,
-    },
-    foodItem: {
-      type: Object,
-      default: () => ({}),
-    },
+    }
   },
 
   //计算属性中放一些复杂的逻辑
   //计算购物车商品的总价格
   computed: {
+
     totalPrice() {
       let total = 0;
-      this.selectFoods.forEach((foodItem) => {
-        total += foodItem.price * foodItem.count;
+      this.selectedgood.forEach((item) => {
+        total += item.num * item.price;
       });
       return total;
     },
     //计算购物车选择商品数量的总和
     totalCount() {
       let count = 0;
-      this.selectFoods.forEach((foodItem) => {
-        count += foodItem.count;
+      this.selectedgood.forEach((item) => {
+        count += item.num;
       });
       return count;
     },
@@ -184,25 +116,14 @@ export default {
     },
     selectedgood() {
       return store.state.selectedgood;
-    },
-    getGoodNum() {
-      //console.log('selectedgood', this.selectedgood);
-      const { name } = this.foodItem;
-      const curIndex = this.selectedgood.findIndex(
-        (item) => item.name === name
-      );
-      if (curIndex > -1) {
-        return this.selectedgood[curIndex].num;
-      } else {
-        return 0;
-      }
-    },
+    }
   },
   methods: {
     // 当点击时，购物车详情页显示
     foldDetail() {
-      this.detailFold = true;
+      this.detailFold = !this.detailFold;
     },
+  
     addCart(foodItem) {
       //console.log(foodItem);
       store.commit("changeselectedGood", {
@@ -337,6 +258,15 @@ export default {
     top: 0;
     left: 0;
     bottom: 100px;
+    .back {
+      width: 50px;
+      height: 50px;
+      margin-left: 160px;
+      background-image: url("../../assets/guanbi.png");
+      background-size: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
     .shopcart-list {
       position: fixed;
       left: 0;
@@ -372,6 +302,7 @@ export default {
           width: 100%;
           border-bottom: 1px solid #dbdee1;
           .food-name {
+              
             line-height: 60px;
             font-size: 15px;
             color: rgb(7, 17, 27);

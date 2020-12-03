@@ -12,6 +12,7 @@ const store = new Vuex.Store({
     /** 存储的购物车数据 */
     selectedgood: [],
   },
+  //mutations用来定义同步的方法
   mutations: {
     //方法，如果修改状态，都是通过mutations修改,状态更新
     //在大多数情况下，载荷应该是一个对象，这样可以包含多个字段并且记录的 mutation 会更易读：
@@ -55,6 +56,7 @@ const store = new Vuex.Store({
       state.selectedgood = curSelectedgood;
     },
   },
+  //actions用来定义异步的方法
   actions: {},
   getters: {
     //类似组件中的计算属性

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 50px;
+        height: 50px;
+        background: royalblue;
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 30px;
+        text-align: center;
+        line-height: 50px;
+        color: black;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        var Div = document.getElementsByTagName("div");
+        for (var i = 0; i < 10; i++) {
+          document.body.innerHTML += "<div>" + i + "</div>";
+        }
+        for (var i = 0; i < Div.length; i++) {
+          Div[i].style.left = 10 + i * 50 + "px";
+          Div[i].style.top = 10 + i * 50 + "px";
+        }
+      };
+    </script>
+  </head>
+  <body></body>
+</html>

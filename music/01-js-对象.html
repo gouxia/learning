@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- -Object 对象
+    1.基本数据类型都是单一的值，值和值之间没有任何的联系，如果使用基本数据类型的数据，我们所创建的变量都是独立的，不能成为一个整体
+    2.对象属于一种符合的数据类型，在对象中可以保存多个不同数据类型的属性，
+    3.对象就像一个容器，可以装很多东西，比如一个人的姓名，年龄，身高等都可以一起存在一个对象中
+    4.对象的分类
+      (1)内建对象
+          -由ES标准中定义的对象，在任何的ES的视线中都可以使用
+          -比如：Math  String Number Boolean Function Object....
+      (2)宿主对象
+          -由JS的运行环境提供的对象，目前来讲主要指由浏览器提供的对象
+          -比如 BOM  DOM
+      (3)自定义对象
+          -由开发人员自己创建的对象  
+     -->
+  </head>
+  <body>
+    <script>
+      // 创建对象
+      // 使用new关键字调用的函数，是构造函数constructor，构造函数是专门用来创建对象的函数
+      // 使用typeof检查一个对象的类型时，会返回object  
+      var obj = new Object();
+      console.log(obj);
+      console.log(typeof obj);
+      // 在对象中保存的值成为属性，向对象中添加属性，语法：对象.属性名 = 属性值；属性值可以是任意的值，也可以是一个对象
+      // 向obj中添加属性
+      obj.name = "王狗霞";
+      obj.age = "3";
+      obj.height = "1.68";
+      console.log(obj);
+      // 读取对象中的属性
+      // 语法：对象.属性名
+      console.log(obj.name);
+      // 修改对象中的属性值
+      // 语法：对象.属性名 = 新值
+      obj.name = "枣枣";
+      console.log(obj.name)
+      // 删除对象中的属性
+      delete obj.name;
+      console.log(obj)
+      // in 运算符，通过该运算符可以检查一个对象中是否含有指定的属性，如果有则返回true，没有则返回false
+      // 语法："属性名" in 对象名
+      console.log("age" in obj);
+      console.log("weight" in obj)
+    </script>
+  </body>
+</html>

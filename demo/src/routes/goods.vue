@@ -39,7 +39,7 @@
 
 <script>
 import BScroll from "better-scroll";
-import store from "../store";
+//import store from "../store";
 import mockData from "../mock.json";
 import GoodItem  from "../components/GoodItem";
 //import ShopCart from "../components/ShopCart"
@@ -117,15 +117,15 @@ export default {
       });
     },
     //当点击时，进入食品的详情页
-    toCheckDetail(goodDetail) {
-      //saveGoodDetail，提交修改的食品详情信息
-      store.commit("saveGoodDetail", {
-        goodDetail,
-      });
-      this.$router.push({
-        path: "/goodDetail",
-      });
-    },
+    // toCheckDetail(goodDetail) {
+    //   //saveGoodDetail，提交修改的食品详情信息
+    //   store.commit("saveGoodDetail", {
+    //     goodDetail,
+    //   });
+    //   this.$router.push({
+    //     path: "/goodDetail",
+    //   });
+    // },
     selectMenu(index) {
       let foodsList = this.$refs.foodswrapper.getElementsByClassName(
         "foods-list-hook"

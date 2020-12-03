@@ -1,0 +1,10 @@
+.marquee-wrapper {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    .home-notification-text{
+      color: #da1f32;
+      font-weight: 700;
+      font-size: .3125rem /* 5/16 */;
+    }
+  }

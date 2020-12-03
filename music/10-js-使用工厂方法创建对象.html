@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        // 使用工厂方法创建对象，通过该方法可以大批量的创建对象
+      function createPerson(name, age, gender) {
+        // 创建一个新的对象
+        var obj = new Object();
+        // 向对象中添加属性
+        obj.name = name;
+        obj.age = age;
+        obj.gender = gender;
+        obj.sayName = function() {
+          alert(this.name);
+        };
+        // 将新的对象返回
+        return obj;
+      }
+      //   调用createPerson函数
+      var obj2 = createPerson("娃哈哈", 28, "男");
+      var obj3 = createPerson("爽歪歪", 13, "女");
+      var obj4 = createPerson("矿泉水", 54, "男");
+      console.log(obj2);
+      console.log(obj3);
+      console.log(obj4);
+      obj2.sayName();
+    </script>
+  </body>
+</html>

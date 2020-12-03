@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Date对象:在js中使用Date对象来表示一个时间
+      // 创建一个Date对象,如果直接使用构造函数创建一个Date对象，则会封装为当前代码执行的时间
+    //   创建当前日期
+      var d = new Date();
+      console.log(d);
+
+      // 创建一个指定的时间对象，需要再构造函数中传递一个表示时间的字符串作为参数
+    //   创建指定日期,日期格式：月份/日/年  时：分：秒
+      var d2 = new Date("02/11/2020 17:16:50");
+      console.log(d2);
+      var date = d2.getDate();
+      console.log("date="+date);
+      var day = d2.getDay();
+      console.log("day="+day);
+    </script>
+  </body>
+</html>

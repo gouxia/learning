@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            width: 100px;
+            height: 150px;
+            float: left;
+            margin-right: 30px;
+            background: grey;
+            /* 相对定位是相对于其自身原来的位置 */
+            position: relative;
+        }
+        div {
+            width: 80px;
+            height: 200px;
+            left: 10px;
+            top: 75px;
+            /* 绝对定位的元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于<html>: */
+            position: absolute;
+            background: forestgreen;
+            display: none;
+        }
+
+    </style>
+    <script>
+        window.onload = function (){
+            var Li = document.getElementsByTagName('li');
+            for(var i=0; i<Li.length; i++){
+                //onmouseover为鼠标移入事件
+                Li[i].onmouseover = function (){
+                    //this的作用是找到想找的div元素
+                    this.getElementsByTagName('div')[0].style.display = 'block';
+                };
+                //onmouseout为鼠标离开事件
+                Li[i].onmouseout = function (){
+                    this.getElementsByTagName('div')[0].style.display = 'none';
+                };
+            }
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+        </li>
+    </ul>
+</body>
+</html>

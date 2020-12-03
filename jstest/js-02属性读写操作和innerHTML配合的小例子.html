@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div01 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            background: rgb(201, 206, 203);
+            padding: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var Div = document.getElementById("div01");
+            var Span = document.getElementById("span01");
+            var Text = document.getElementById("text01");
+            var Btn = document.getElementById("btn01");
+            Btn.onclick = function () {
+                Div.innerHTML = Div.innerHTML + Span.innerHTML + Text.value + '<br/>';
+                //清空文本框中的值
+                Text.value = '';
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div01"></div>
+    <br>
+    <br>
+    <span id="span01">妙味：</span>
+    <input id="text01" type="text"/>
+    <input id="btn01" type="button" value="提交">
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+.home-notification-wrap{
+    //大兴机场10月1日正式对外开放通知
+    .home-notification{
+      display: flex;
+      align-items: center;
+      width: 9.4667rem;/**710px */
+      height: 0.8267rem;/**62px */
+      border-radius: 0.4667rem;
+      position: absolute;
+      top: 4.12rem;/**309px */
+      background: rgb(130, 112, 112);
+      margin: 0 .266667rem /* 20/75 */;
+      padding-right: 0.5rem;
+      box-sizing: border-box;
+      i{
+        height: 0.3733rem;
+        width: 0.32rem;
+        margin: 0 0.1867rem 0 0.2933rem;/**0 14px 0 22px */
+        background: url('../images//home-notification-red.png') no-repeat center/0.32rem;
+      }
+    }
+  }

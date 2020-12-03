@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      #employeeTable {
+        margin: 100px auto;
+      }
+      .formDiv {
+        width: 300px;
+        height: 200px;
+        margin: 50px auto;
+        border: 1px solid black;
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <table border="1" id="employeeTable">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>Tom</td>
+        <td>123456@qq.com</td>
+        <td>5000</td>
+        <td><a href="#">Delete</a></td>
+      </tr>
+      <tr>
+        <td>Jerry</td>
+        <td>123456@qq.com</td>
+        <td>8000</td>
+        <td><a href="#">Delete</a></td>
+      </tr>
+      <tr>
+        <td>Bob</td>
+        <td>123456@qq.com</td>
+        <td>10000</td>
+        <td><a href="#">Delete</a></td>
+      </tr>
+    </table>
+
+    <div class="formDiv">
+      <h4>添加新员工</h4>
+      <table>
+        <tr>
+          <td class="word">name:</td>
+          <td class="inp"><input type="text" name="empName" id="empName" /></td>
+        </tr>
+        <tr>
+          <td class="word">email:</td>
+          <td class="inp"><input type="text" name="email" id="email" /></td>
+        </tr>
+        <tr>
+          <td class="word">salary:</td>
+          <td class="inp"><input type="text" name="salary" id="salary" /></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <button id="addEmpButton" value="abc">Submit</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      // 点击超链接以后删除员工的信息
+      var allA = document.getElementsByTagName("a");
+      // 输出结果为集合
+      //alert(allA);
+      // 遍历集合allA
+      for (var i = 0; i < allA.length; i++) {
+        //alert(allA[i].innerHTML);
+        allA[i].onclick = function() {
+          // 在这里，我们点击哪个超链接，this就是谁
+          // 获取tr
+          var tr = this.parentNode.parentNode;
+          // 删除tr
+          tr.parentNode.removeChild(tr);
+          // 点击超链接以后，超链接会跳转页面，这个是超链接的默认行为，但是此时我们不希望出现默认行为，可以通过在响应函数的最后return false老取消默认行为
+          return false;
+        };
+      }
+
+      var addEmpButton = document.getElementById("addEmpButton");
+      var employeeTable = document.getElementById("employeeTable");
+      var tbody = document.getElementsByTagName("tbody")[0];
+
+      addEmpButton.onclick = function() {
+        //   获取文本框输入的内容 .value是获取文本框输入的值
+        var name = document.getElementById("empName").value;
+        var email = document.getElementById("email").value;
+        var salary = document.getElementById("salary").value;
+        // 创建tr元素
+        var tr = document.createElement("tr");
+        // 创建td元素
+        var nametd = document.createElement("td");
+        var emailtd = document.createElement("td");
+        var salarytd = document.createElement("td");
+        var deletetd = document.createElement("td");
+        // 创建a元素
+        var a = document.createElement("a");
+        // 创建文本节点
+        var nametext = document.createTextNode(name);
+        var emailtext = document.createTextNode(email);
+        var salarytext = document.createTextNode(salary);
+        var deletetext = document.createTextNode("Delete");
+        // 将文本节点添加到a节点中
+        a.appendChild(deletetext);
+        // 向a中添加href属性
+        a.href = "javascript:;";
+        // 将文本节点添加到td元素中
+        nametd.appendChild(nametext);
+        emailtd.appendChild(emailtext);
+        salarytd.appendChild(salarytext);
+        deletetd.appendChild(a);
+        // 将td节点添加到tr元素中
+        tr.appendChild(nametd);
+        tr.appendChild(emailtd);
+        tr.appendChild(salarytd);
+        tr.appendChild(deletetd);
+        // 将tr添加到tbody中
+        tbody.appendChild(tr);
+      };
+      //   为新添加的a再绑定一次单击响应函数
+      a.onclick = function() {
+      for (var i = 0; i < a.length; i++) {
+        //alert(allA[i].innerHTML);
+        a[i].onclick = function() {
+          // 在这里，我们点击哪个超链接，this就是谁
+          // 获取tr
+          var tr = this.parentNode.parentNode;
+          // 删除tr
+          tr.parentNode.removeChild(tr);
+          // 点击超链接以后，超链接会跳转页面，这个是超链接的默认行为，但是此时我们不希望出现默认行为，可以通过在响应函数的最后return false老取消默认行为
+          return false;
+        };
+      }
+      };
+    </script>
+  </body>
+</html>

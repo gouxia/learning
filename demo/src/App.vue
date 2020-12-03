@@ -21,19 +21,6 @@ export default {
     return {};
   },
   props: {},
-  // methods: {
-  //   //购物车小球动画的方法,访问子组件用$refs
-  //     _drop(target) {
-  //       this.$refs.ShopCart.drop(target);
-  //     }
-  // },
-  //购物车小球动画事件
-  //  events: {
-  //    'cart.add'(target) {
-  //     this._drop(target);
-
-  //   }
-  //  }
 };
 </script>
 

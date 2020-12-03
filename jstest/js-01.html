@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var Btn = document.getElementById("btn01");
+        var Text = document.getElementById("text01");
+        var Select = document.getElementById("select01");
+        var Img = document.getElementById("img01");
+        var P = document.getElementById("p01");
+        //  能找到id为btn01的按钮
+        Btn.onclick = function () {
+          // alert(Btn.type);
+          //alert(Text.value);
+          //alert(Select.value);
+          //字符串连接：'淘宝' + '在' +'杭州' => '淘宝在杭州'
+          //alert(Text.value + '在' + Select.value);
+          //当点击按钮时，按钮的value值变为英文button
+          //Btn.value = 'button';
+          //当点击按钮，文本框中出现按钮两个字
+          //Text.value = '按钮';
+          //当点击按钮，文本框出现的内容被替换成选中的内容
+          //Text.value =  Select.value
+          //当点击按钮，通过文本框中图片路径的变化切换图片
+          //Img.src = Text.value;
+          //innerHTML 可以读取所有html中的内容
+          //alert(P.innerHTML);
+          //在文本输入框中输入新的内容，当点击按钮，html中的内容被改变成输入的新内容
+          P.innerHTML = Text.value;
+          //当点击按钮以后，把文本输入框中输入的内容清空，可以下次输入
+          Text.value = '';
+
+
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <input id="text01" type="text" />
+    <select id="select01">
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="杭州">杭州</option>
+    </select>
+    <input id="btn01" type="button" value="按钮" />
+    <br/>
+    <img id="img01" src="./09.png">
+    <br/>
+    <p id="p01">
+      我是王狗霞
+    </p>
+  </body>
+</html>

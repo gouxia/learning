@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 使用 router-link 组件来导航. -->
+      <!-- 通过传入 `to` 属性指定链接. -->
+      <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+      <router-link to="/aaaa">AAAA</router-link>
+      <router-link to="/bbbb">BBBB</router-link>
+      <router-link to="/cccc">CCCC</router-link>
+      <router-link to="/dddd">DDDD</router-link>
+      <!-- 路由出口 -->
+      <!-- 路由匹配到的组件将渲染在这里 -->
+      <router-view></router-view>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./vue-router.js"></script> -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+      // 提供要渲染的组件
+      var comA = {
+        template: `<div>AAAA</div>`,
+      };
+      var comB = {
+        template: `<div>BBBB</div>`,
+      };
+      var comC = {
+        template: `<div>CCCC</div>`,
+      };
+      var comD = {
+        template: `<div>DDDD</div>`,
+      };
+      //实例化路由
+      var router = new VueRouter({
+        //路由选项
+        // routes：[{路由配置}]
+        routes: [
+          {
+            path: "/aaaa",
+            component: comA,
+          },
+          {
+            path: "/bbbb",
+            component: comB,
+          },
+          {
+            path: "/cccc",
+            component: comC,
+          },
+          {
+            path: "/dddd",
+            component: comD,
+          },
+        ],
+      });
+
+      var app = new Vue({
+        el: "#app",
+        //vue选项->router,在实例app中使用路由router
+        router,
+      });
+    </script>
+  </body>
+</html>

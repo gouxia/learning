@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            var Btn01 = document.getElementById("btn01");
+            var Btn02 = document.getElementById("btn02");
+            var P = document.getElementById("p01");
+
+            var num = 16;
+            Btn01.onclick = function () {
+                num = num - 3;
+                //alert( num );
+                //JS中不允许出现 - ，所以font-size要写成fontSize
+                P.style.fontSize = num + 'px';
+            }
+            Btn02.onclick = function () {
+                num = num + 3;
+                //alert( num );
+                //JS中不允许出现 - ，所以font-size要写成fontSize
+                P.style.fontSize = num + 'px';
+            }
+        }
+    </script>
+</head>
+<body>
+    <input id="btn01" type="button" value="变小"/>
+    <input id="btn02" type="button" value="变大"/>
+    <p id="p01" style="font-size: 16px;">
+        嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎，嘎嘎嘎嘎嘎嘎嘎嘎嘎噶那个嘎嘎嘎嘎，
+        嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎，嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎，嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎
+
+    </p>
+</body>
+</html>

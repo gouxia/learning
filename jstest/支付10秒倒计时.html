@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      div {
+        width: 200px;
+        height: 300px;
+        background-color: cadetblue;
+        padding: 20px;
+        margin: 100px auto;
+      }
+      button {
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>商品：Web前端课程</p>
+      <p>原价：1980元</p>
+      <p>商品：1.98元</p>
+      <p>内容：HTML,CSS,JS</p>
+      <p>地址：北京市朝阳区</p>
+      <p>
+        <button id="btn01">支付</button>
+        <button id="btn02">取消</button>
+      </p>
+    </div>
+    <script>
+      var btn01 = document.getElementById("btn01");
+      var btn02 = document.getElementById("btn02");
+      // 逻辑：点击支付按钮，出现确认框
+      btn01.onclick = function () {
+        let res = confirm("你确定要支付吗");
+        // 判断是否要确认支付，如果确认，则跳转到支付页面，否则
+        if (res) {
+          // 跳转到支付成功的页面
+          location.href = '支付成功页面.html';
+        } 
+      };
+    </script>
+  </body>
+</html>
