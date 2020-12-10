@@ -1,0 +1,175 @@
+$button-default-width: 100%;
+$button-default-height: 1.173067rem;
+// text
+// primary
+$button-text-primary-color-normal: #fff;
+$button-text-primary-color-pressed: #fff;
+// default
+$button-text-default-color-normal: #c60a1e;
+$button-text-default-color-pressed: #fff;
+// gray
+$button-text-gray-color-normal: #222;
+$button-text-gray-color-pressed: #222;
+// dark
+$button-text-dark-color-normal: #fff;
+$button-text-dark-color-pressed: #fff;
+// disabled
+$button-text-disabled-color-normal: #fff;
+$button-text-disabled-color-pressed: #fff;
+// text -----------end-----------
+// primary
+//$button-background-color-primary-normal: #ef9f58;
+$button-background-color-primary-normal: #E01322;
+$button-background-color-primary-pressed: #c60a1e;
+$button-background-color-primary-pressed: #c60a1e;
+$button-background-color-primary-border: #c60a1e;
+// default
+$button-background-color-default-normal: #ff4c00;
+$button-background-color-default-pressed: #c60a1e;
+$button-background-color-default-border: #c60a1e;
+// gray
+$button-background-color-gray-normal: #f7f7f7;
+$button-background-color-gray-pressed: #dddddd;
+$button-background-color-gray-border: #9a9a9a;
+// dark
+$button-background-color-dark-normal: transparent;
+$button-background-color-dark-pressed: rgba(255,255,255,0.4);
+$button-background-color-dark-border: #fff;
+//disabled
+$button-background-color-disabled-normal: #d0cece;
+$button-background-color-disabled-pressed: #d0cece;
+$button-background-color-disabled-border: #d0cece;
+
+$button-border-radius: 4px;
+//$button-radius-box-shadow: 0px 18px 39px 0 rgba(228, 57, 57, 0.4);
+$button-radius-box-shadow: 0px 6px 7px 0px rgba(255, 91, 84, 0.35);
+$button-border-radius-radius-normal:1.333333rem;
+$button-disabled-opacity: 0.7;
+$button-disabled-background-color:#999;
+$button-background-color-blue-normal:#00afd8;
+
+$button-background-color-gradient-left:#F5563C;
+$button-background-color-gradient-right:#DF3538;
+
+
+.homeQueryBtn {
+    width: 100%;
+    height: 0.96rem /* 72/75 */;
+    line-height: 0.9rem /* 72/75 */;
+    background: url("../images/search-bg.png") no-repeat;
+    background-size: 8.933333rem /* 670/75 */ 1.05rem;
+    border: 0;
+    label {
+        cursor: pointer;
+        font-size: .43rem /* 7/16 */;
+        font-weight: 500;
+        color: #fff;
+      }
+  }
+.wd-button {
+  display: inline-block;
+  padding: 0;
+  width: 100%;
+  border: none;
+  height: 100%;
+  line-height: 100%;
+  text-align: center;
+  appearance: none;
+  outline: none;
+  border-radius: $button-border-radius;
+  box-sizing: border-box;
+  cursor: pointer;
+  &-primary {
+    background: $button-background-color-primary-normal;
+    color: $button-text-primary-color-normal;
+    box-shadow: $button-radius-box-shadow;
+    &:active {
+      opacity: .8;
+      color: $button-text-primary-color-pressed;
+    }
+  }
+
+  &-default {
+    background: $button-background-color-default-normal;
+    border: 1px solid $button-background-color-default-border; /* no */
+    color: $button-text-default-color-normal;
+    &:active {
+      background: $button-background-color-default-pressed;
+      color: $button-text-default-color-pressed;
+    }
+  }
+  &-gray {
+    background: $button-background-color-gray-normal;
+    border: 1px solid $button-background-color-gray-border; /* no */
+    color: $button-text-gray-color-normal;
+    &:active {
+      background: $button-background-color-gray-pressed;
+      color: $button-text-gray-color-pressed;
+    }
+  }
+  &-gradient {
+    background:-webkit-linear-gradient(left,$button-background-color-gradient-left,$button-background-color-gradient-right);
+    color: $button-text-primary-color-normal;
+    &:active {
+      opacity: .8;
+      color: $button-text-primary-color-pressed;
+    }
+  }
+  &-gost {
+    border:1px solid #ef9f58;
+    color: #ef9f58;
+    background: none;
+  }
+
+  &-dark {
+    background: $button-background-color-dark-normal;
+    border: 1px solid $button-background-color-dark-border; /* no */
+    color: $button-text-dark-color-normal;
+    &:active {
+      background: $button-background-color-dark-pressed;
+      color: $button-text-dark-color-pressed;
+    }
+  }
+
+  &-radius {
+    background: $button-background-color-primary-normal;
+    border: 1px solid $button-background-color-primary-border; /* no */
+    color: $button-text-primary-color-normal;
+    border-radius: $button-border-radius-radius-normal;
+    &:active {
+      background: $button-background-color-primary-pressed;
+      color: $button-text-primary-color-pressed;
+    }
+  }
+  &-blue {
+    background: $button-background-color-blue-normal;
+    color: $button-text-primary-color-normal;
+    border-radius: $button-border-radius-radius-normal;
+    // &:active {
+    //   background-color: $button-background-color-primary-pressed;
+    //   color: $button-text-primary-color-pressed;
+    // }
+  }
+
+  &.wd-button-ghost:not(:active) {
+    background: transparent;
+    // border:1px solid #CCC;
+    border:1px solid #e4303d;
+    color:#dc4451;
+  }
+
+  &[disabled]:not(&-disabled) {
+    opacity: $button-disabled-opacity;
+    background-color: $button-disabled-background-color;
+  }
+  &-disabled {
+    background:$button-background-color-disabled-normal;
+    color: $button-text-disabled-color-normal;
+    opacity: 1;
+    &:active {
+      background: $button-background-color-disabled-pressed;
+      color: $button-text-disabled-color-pressed;
+      opacity: $button-disabled-opacity;
+    }
+  }
+}

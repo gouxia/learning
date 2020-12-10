@@ -1,0 +1,182 @@
+
+    // 推荐
+    .recomm-content-item-wrapper {
+      width: 9.466667rem /* 710/75 */;
+      margin: 0.26667rem;
+      box-sizing: border-box;
+      //height: 20rem;
+      // card slot内容
+      .recomm-content-item__card-wrapper {
+        padding: 0 0.266667rem;
+        // 各推荐头部
+        .product-title {
+          //@include font-dpr(13px);
+          font-size: .3125rem /* 5/16 */;
+          padding-left: 0.45rem;
+          height: 0.933333rem;
+          line-height: 0.933333rem;
+          font-weight: normal;
+          background: no-repeat left center;
+          background-size: 0.373333rem;
+        }
+        .travel-title {
+          background-image: url("../images/travelFreely.png");
+        }
+        .wines-title {
+          background-image: url("../images/winesProduct.png");
+          background-size: 0.346667rem;
+        }
+        .ticket-title {
+          background-image: url("../images/specialTicket.png");
+        }
+        // 各推荐list容器
+        .recomm-content-item__img-list-wrapper{
+          // 条目容器
+          .recomm-content-item__img-list-content{
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 0.266667rem;
+            border-radius: .2rem /* 15/75 */;
+            img {
+              width: 100%;
+              height: 100%;
+              display: block;
+            }
+            // 黑色透明渐变mask
+            .recomm-content-item__img-list-mask {
+              width: 100%;
+              height: 1.066667rem /* 80/75 */;
+              bottom: 0;
+              left: 0;
+              position: absolute;
+              background: -webkit-linear-gradient(
+                bottom,
+                rgba(0, 0, 0, 0.95),
+                transparent
+              );
+            }
+            // 文字内容容器
+            .recomm-content-item__text-content-wrapper{
+              position: absolute;
+              color: #fff;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              text-align: center;
+              box-sizing: border-box;
+              //@include font-size-12;
+              font-size: .3125rem /* 5/16 */;
+              // 条目内左上内容
+              .recomm-content-item__text-content-left-top {
+                position: absolute;
+                left: 0.05rem;
+                top: 0.1rem;
+                color: #fff;
+                background-color: rgba(0, 0, 0, 0.4);
+               // @include font-dpr(10px);
+               font-size: .3125rem /* 5/16 */;
+                border: 1px solid #fff;
+                padding: 0 0.133333rem;
+                border-radius: 0.4rem /* 30/75 */;
+              }
+              // 底部内容
+              .recomm-content-item__text-content-bottom{
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 0.53333rem;
+                line-height: 0.53333rem;
+                text-align: left;
+                box-sizing: border-box;
+                padding: 0 0.133333rem;
+              }
+            }
+          }
+          // 自由行 条目容器
+          .recomm-content-item__travel-image-wrapper{
+            width: 4.32rem /* 324/75 */;
+            height: 2.7rem;
+            float: right;
+            &:first-child {
+              float: left;
+              width: 100%;
+              .recomm-content-item__text-content-wrapper{
+                .recomm-content-item__travel-text-content-bottom {
+                  .travel-city,.travel-amount {
+                    width: auto;
+                    float: left;
+                  }
+                }
+              }
+            }
+            &:nth-child(even) {
+              float: left;
+            }
+            // 文字内容容器
+            .recomm-content-item__text-content-wrapper{
+              .recomm-content-item__travel-text-content-bottom {
+                height: auto;
+                .travel-city {
+                  width: 100%;
+                  text-align: right;
+                }
+                .travel-amount {
+                  text-align: right;
+                  width: 100%;
+                  //@include font-dpr(13px);
+                  font-size: .3125rem /* 5/16 */;
+                  span {
+                    //@include font-size-10;
+                    font-size: .3125rem /* 5/16 */;
+                    position: relative;
+                    bottom: 0.01rem;
+                  }
+                }
+              }
+            }
+          }
+          // 机加酒 条目容器
+          .recomm-content-item__wines-image-wrapper {
+            width: 100%;
+            height: 3.7rem;
+            // 文字内容容器
+            .recomm-content-item__text-content-wrapper {
+              .recomm-content-item__travel-text-content-bottom {
+                padding-left: 0.2rem;
+              }
+            }
+          }
+          // 特价票 条目容器
+          .recomm-content-item__ticket-image-wrapper {
+            width: 4.333333rem;
+            height: 2.7rem;
+            float: left;
+            &:nth-child(2n) {
+              float: right;
+            }
+            .recomm-content-item__text-content-wrapper {
+              padding: 0.133333rem;
+              .recomm-content-item__ticket-text-content-bottom {
+                overflow: hidden;
+                bottom: 0.05rem;
+                padding: 0;
+                // @include font-dpr(12px);
+                font-size: .3125rem /* 5/16 */;
+                .ticket-city {
+                  float: left;
+                }
+                .ticket-amount {
+                  float: right;
+                  margin-right: 0.2rem;
+                  padding-right: 0.133333rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+ 

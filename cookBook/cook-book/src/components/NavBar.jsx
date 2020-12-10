@@ -4,7 +4,7 @@ class NarBar  extends Component {
     render() { 
         return ( 
             <div className="wd-navbar">
-
+                {this.props.children}
             </div>
          );
     }

@@ -1,77 +1,206 @@
-.content {
+* {
+  margin: 0;
+  padding: 0;
+
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: 0.2s all ease-in-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.home {
   position: fixed;
   width: 10rem;
   height: 100%;
-  margin: 0 auto;
-  z-index: 20;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  .home {
-    position: fixed;
-    width: 10rem;
-    height: 100%;
-    .home-content {
-      width: 10rem;
-      position: relative;
-      background-color: #f5f5f5;
-      .home-body {
-        width: 10rem;
-        height: auto;
-        overflow: hidden;
+  .fade-transition {
+    transition: all 1s ease;
+    opacity: 1;
+  }
+  .fade-enter,
+  .fade-leave {
+    opacity: 0;
+  }
+  .resetFontSize {
+    //@include font-size-16;
+    font-size: .375rem /* 6/16 */;
+  }
+}
+.home-content {
+  width: 10rem;
+  position: relative;
+  background-color: #f5f5f5;
+}
+.scrollView {
+  width: 10rem;
+  height: calc(100% - 1.47973rem);
+  background-color: #F5F5F5;
+}
+.home-body 
+{
+  width: 10rem;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  //大兴机场10月1日正式对外开放通知结束
+  .flightSearchWrap {
+    //@extend .fixFloat;
+    width: 9.466667rem;
+    height: auto;
+    margin: 0.26667rem auto;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border-radius: .266667rem /* 20/75 */;
+    //box-shadow: $jetair-comon-box-shadow;
+    .wd-navbar {
+      border-radius: 0.266667rem 0.266667rem 0 0;
+      border: none;
+    }
+    .orgDstWrap {
+      box-sizing: content-box;
+      width: 100%;
+      height: 1.266667rem;
+      padding-top: 0.2rem;
+      .orgCity,
+      .dstCity {
+        box-sizing: border-box;
+        width: 4rem;
+        height: 1.266667rem;
+        line-height: 1.266667rem;
+        float: left;
+        font-size: 0.53rem /* 6/16 */;
+      }
+      .orgCity {
+        padding-left: 0.266667rem;
+      }
+      .dstCity {
+        text-align: right;
+        float: right;
+        padding-right: 0.266667rem;
+      }
+      .changeOrgDst {
+        margin-top: 0.226667rem;
+        width: 1.4rem;
+        height: 0.733333rem;
+        float: left;
+        background: url("../images/changeCUA.png") 
+          no-repeat center center;
+        background-size: 0.733333rem;
+      }
+      .changeAnimation {
+        transform: rotate(180deg);
+        -ms-transform: rotate(180deg); /* IE 9 */
+        -webkit-transform: rotate(180deg); /* Safari and Chrome */
+        -o-transform: rotate(180deg); /* Opera */
+        -moz-transform: rotate(180deg); /* Firefox */
+      }
+      .changeIcon {
+        width: 1.4rem;
+        height: 0.733333rem;
+        background: url("../images/changeOrgDst.png")
+          no-repeat center center;
+        background-size: 0.733333rem;
+        transition: All 0.4s ease-in-out;
+        -webkit-transition: All 0.4s ease-in-out;
+        -moz-transition: All 0.4s ease-in-out;
+        -o-transition: All 0.4s ease-in-out;
+      }
+    }
+    .flightDateWrap {
+      width: 9.466667rem;
+      margin: auto;
+      height: 1.333333rem;
+      .flightOrgDatewrap,
+      .flightDstDatewrap {
+        float: left;
+        height: 100%;
+        width: 4rem;
+        .dateWrap {
+          overflow: hidden;
+          float: right;
+        }
+        .flightDay {
+          float: left;
+          line-height: 1.333333rem;
+          font-size: .64rem;
+        }
+        .deleteday {
+          width: 0.373333rem;
+          height: 100%;
+          margin-right: 0.2rem;
+          background: url("../images/close.png") no-repeat right center;
+          background-size: 0.373333rem;
+          float: right;
+        }
+        .dstDay {
+          color: #9b9b9b;
+         font-size: .3rem /* 6/16 */;
+          position: absolute;
+          right: 0;
+          bottom: 0.4rem;
+          padding-left: 0.666667rem;
+          background: url("../images/dstDay.png") no-repeat
+            left center;
+          background-size: 0.426667rem;
+        }
+        .flightDateInfo {
+          margin-left: 0.1rem;
+          padding-top: 0.266667rem;
+          float: left;
+          font-size: .3rem /* 6/16 */;
+        }
+      }
+
+      .flightOrgDatewrap {
+        margin-left: 0.266667rem;
+      }
+      .flightDstDatewrap {
+        margin-right: 0.266667rem;
+        float: right;
         position: relative;
-        .flightSearchWrap {
-          width: 9.466667rem;
-          height: auto;
-          margin: 0.26667rem auto;
-          // background: rgb(126, 64, 64);
-          box-sizing: border-box;
-          border-radius: 0.26667rem;
-          box-shadow: 0 0 0.04rem 0 hsla(0, 0%, 86%, 0.1);
-          background-color: #fff;
-          .orgDstWrap {
-            box-sizing: content-box;
-            width: 100%;
-            height: 1.266667rem;
-            padding-top: 0.2rem;
-            .orgCity {
-              padding-left: 0.266667rem;
-              box-sizing: border-box;
-              width: 4rem;
-              height: 1.266667rem;
-              line-height: 1.266667rem;
-              float: left;
-              font-size: 0.53rem;
-            }
-            .changeOrgDst {
-              margin-top: 0.226667rem;
-              width: 1.4rem;
-              height: 0.733333rem;
-              float: left;
-              .changeIcon {
-                width: 1.4rem;
-                height: 0.733333rem;
-                transition: All 0.4s ease-in-out;
-                -webkit-transition: All 0.4s ease-in-out;
-                -moz-transition: All 0.4s ease-in-out;
-                -o-transition: All 0.4s ease-in-out;
-              }
-            }
-            .dstCity {
-              text-align: right;
-              float: right;
-              padding-right: 0.266667rem;
-              box-sizing: border-box;
-              width: 4rem;
-              height: 1.266667rem;
-              line-height: 1.266667rem;
-              float: left;
-              font-size: 0.53rem;
-            }
-          }
+        .flightDay,
+        .flightDateInfo {
+          float: right;
+        }
+        .flightDay {
+          margin-left: 0.266667rem;
+        }
+        .flightDateInfo {
+          text-align: right;
+          margin: 0;
         }
       }
     }
+    .SearchBtnWrap {
+      width: 100%;
+      padding: 0.24rem 0.266667rem;
+      box-sizing: border-box;
+      .flightSearchBtn {
+        width: 100%;
+        .homeQueryBtn {
+          width: 100%;
+          height: 0.96rem /* 72/75 */;
+          line-height: 0.9rem /* 72/75 */;
+          background: url("../images/search-bg.png") no-repeat;
+          background-size: 8.933333rem /* 670/75 */ 1.05rem;
+          border: 0;
+          //font-size: 0.43rem;
+        }
+      }
+      //军警残入口
+      .go-special-booking {
+        width: 100%;
+        height: 1.066667rem /* 80/75 */;
+        line-height: 1.066667rem /* 80/75 */;
+        text-align: center;
+        font-size: .3rem /* 6/16 */;
+        color: #ff6d70;
+        text-decoration: underline;
+      }
+    }
   }
+}
 }

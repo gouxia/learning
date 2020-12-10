@@ -1,57 +1,84 @@
-.tabitem {
-  position: fixed;
-  z-index: 10;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  margin: auto;
-  .wd-tabbar {
-    display: flex;
-    width: 10rem;
-    height: 1.54667rem;
-    //line-height: 1.54667rem;
-    font-size: 0.3rem;
-    color: #737373;
-    box-sizing: border-box;
-    background-color: #fff;
-    box-shadow: 0 0 10px 0 hsla(0, 6%, 58%, 0.6);
-    -webkit-box-shadow: 0 0 10px 0 hsla(0, 6%, 58%, 0.6);
-    -moz-box-shadow: 0 0 10px 0;
-    .wd-tab-item {
-      margin: 0 auto;
-      margin-top: 0.3125rem /* 5/16 */;
-      text-align: center;
-      float: left;
-      .wd-tab-item-icon-1 {
-        margin-bottom: 0.08rem;
-        height: 0.533333rem /* 40/75 */;
-        width: 0.5rem;
-        background: url("../images/tab_main_select_ny.png") no-repeat center;
-        background-size: 0.733333rem 0.733333rem;
-      }
-      .wd-tab-item-icon-2 {
-        margin-bottom: 0.08rem;
-        height: 0.533333rem /* 40/75 */;
-        width: 0.5rem;
-        background: url("../images/tab_journey_no_ny.png") no-repeat center;
-        background-size: 0.733333rem;
-      }
-      .wd-tab-item-icon-3 {
-        margin-bottom: 0.08rem;
-        height: 0.533333rem /* 40/75 */;
-        width: 0.5rem;
-        background: url("../images/tab_notice_no_ny.png") no-repeat center;
-        background-size: 0.733333rem;
-      }
-      .wd-tab-item-icon-4 {
-        margin-bottom: 0.08rem;
-        height: 0.533333rem /* 40/75 */;
-        width: 0.5rem;
-        background: url("../images/tab_me_no_ny.png") no-repeat center;
-        background-size: 0.733333rem;
-        padding-left: 0.25rem;
-        padding-right: 0.25rem;
-      }
-    }
+// .tabitem {
+//   position: fixed;
+//   z-index: 10;
+//   left: 0px;
+//   right: 0px;
+//   bottom: 0px;
+//   margin: auto;
+//   .wd-tabbar {
+//     display: flex;
+//     width: 10rem;
+//     height: 1.54667rem;
+//     //line-height: 1.54667rem;
+//     font-size: 0.3rem;
+//     color: #737373;
+//     box-sizing: border-box;
+//     background-color: #fff;
+//     box-shadow: 0 0 10px 0 hsla(0, 6%, 58%, 0.6);
+//     -webkit-box-shadow: 0 0 10px 0 hsla(0, 6%, 58%, 0.6);
+//     -moz-box-shadow: 0 0 10px 0;
+//     .wd-tab-item {
+//       margin: 0 auto;
+//       margin-top: 0.3125rem /* 5/16 */;
+//       text-align: center;
+//       float: left;
+//       .wd-tab-item-icon-1 {
+//         margin-bottom: 0.08rem;
+//         height: 0.533333rem /* 40/75 */;
+//         width: 0.5rem;
+//         background: url("../images/tab_main_select_ny.png") no-repeat center;
+//         background-size: 0.733333rem 0.733333rem;
+//       }
+//       .wd-tab-item-icon-2 {
+//         margin-bottom: 0.08rem;
+//         height: 0.533333rem /* 40/75 */;
+//         width: 0.5rem;
+//         background: url("../images/tab_journey_no_ny.png") no-repeat center;
+//         background-size: 0.733333rem;
+//       }
+//       .wd-tab-item-icon-3 {
+//         margin-bottom: 0.08rem;
+//         height: 0.533333rem /* 40/75 */;
+//         width: 0.5rem;
+//         background: url("../images/tab_notice_no_ny.png") no-repeat center;
+//         background-size: 0.733333rem;
+//       }
+//       .wd-tab-item-icon-4 {
+//         margin-bottom: 0.08rem;
+//         height: 0.533333rem /* 40/75 */;
+//         width: 0.5rem;
+//         background: url("../images/tab_me_no_ny.png") no-repeat center;
+//         background-size: 0.733333rem;
+//         padding-left: 0.25rem;
+//         padding-right: 0.25rem;
+//       }
+//     }
+//   }
+// }
+$tabbar-height: 1.546667rem;
+$tabbar-background-color: #ffffff;
+$tabbar-font-size: 20px;
+$tabbar-color: #737373;
+$tabbar-border-color: #cccccc;
+.wd-tabbar {
+  display: flex;
+  width: 10rem;
+  height: $tabbar-height;
+  line-height: $tabbar-height;
+  font-size: $tabbar-font-size; /* px */
+  color: $tabbar-color;
+  // background: url("../../../../assets/images/cua/tab-bg.png") no-repeat;
+  // background-size: 10rem;
+  box-sizing: border-box;
+  background-color: $tabbar-background-color;
+  box-shadow: 0 0 10px 0 rgba(155, 143, 143, 0.6);
+  -webkit-box-shadow: 0 0 10px 0 rgba(155, 143, 143, 0.6);
+  -moz-box-shadow: 0 0 10px 0 rgba(155, 143, 143, 0.6);
+  // padding: 0 .266667rem /* 20/75 */;
+  .wd-tab-item {
+    // flex: none !important;
+    margin: 0 auto;
+    text-align: center;
+    float: left;
   }
 }

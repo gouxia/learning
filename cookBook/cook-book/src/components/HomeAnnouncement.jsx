@@ -10,7 +10,7 @@ class HomeAnnouncement extends Component {
                     <Marquee>
                     </Marquee>
                 </div>
-
+                <div style={{height:'0.413rem'}}></div>
             </div>
         );
     }

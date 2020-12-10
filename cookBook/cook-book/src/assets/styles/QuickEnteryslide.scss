@@ -1,0 +1,95 @@
+.quickEntrySlide {
+    position: relative;
+    //首页快捷入口的指示器
+    .dotWrap {
+      position: absolute;
+      width: 10rem;
+      height: 5px;
+      z-index: 9999;
+      text-align: center;
+      top: 3.3rem;
+      .dotsItem {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        margin-left: 4px;
+        border-radius: 8px;
+        background: #cecece;
+      }
+      .dotsHover {
+        width: 15px;
+        background: #ff6d70;
+      }
+    }
+  
+    .productList {
+      width: 9.466667rem /* 710/75 */;
+      margin: 0.26667rem;
+      box-sizing: border-box;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      border-radius: 0.2rem;
+      overflow: hidden;
+      .quickEntryWrap {
+        width: 9.466667rem /* 710/75 */;
+        height: 4.7rem;
+        .quickEntryGroup {
+          width: 18.933334rem;
+          height: 4.4rem;
+        }
+        .productType {
+          width: 9.466667rem /* 710/75 */;
+          height: 4.4rem /* 330/75 */;
+          font-size: 0.5rem /* 8/16 */;
+          //@include font-size-12;
+          font-size: .015rem /* 6/16 */;
+          float: left;
+          .rowType {
+            width: 9.466667rem /* 710/75 */;
+            padding: 0.4rem /* 30/75 */ 0.613333rem /* 46/75 */;
+            box-sizing: border-box;
+            height: 100%;
+            background-color: #fff;
+          }
+          .product-li-info {
+            width: calc((100% - 2.8rem) / 4);
+            height: 50%;
+            margin-right: 0.933333rem /* 70/75 */;
+            box-sizing: border-box;
+            list-style: none;
+            float: left;
+            text-align: center;
+            position: relative;
+            &:nth-child(4n) {
+              margin: 0;
+            }
+            .img-wrapper {
+              width: 1.173333rem /* 88/75 */;
+              height: 1.173333rem /* 88/75 */;
+              margin: 0 auto;
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            span {
+              position: absolute;
+              font-size: .3125rem /* 5/16 */;
+              left: 0.7rem;
+              bottom: 0.133333rem;
+              width: 2.25rem;
+              line-height: 0.4rem;
+              transform: translateX(-50%);
+              -ms-transform: translateX(-50%);
+              -moz-transform: translateX(-50%);
+              -webkit-transform: translateX(-50%);
+              -o-transform: translateX(-50%);
+            }
+          }
+        }
+      }
+     
+    }
+  }
