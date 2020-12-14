@@ -12,6 +12,39 @@ import Button from '../components/Button'
 import QuickEnteryslide from '../components/QuickEnteryslide'
 import Recommended from '../components/Recommended'
 export default class Home extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            //selectedTabId: "domestic",
+            orgCity: "北京大兴",
+            dstCity: "上海虹桥",
+            orgStyle: "wd-tab-item active navbar-active navbar-tab-item tab-normal-font-size",
+            dstStyle: "wd-tab-item navbar-tab-item tab-normal-font-size"
+        }
+    }
+    tabItemClickHandler = (e) => {
+        console.log(e.target.dataset.index);
+        let index = e.target.dataset.index;
+        // 此时控制台能输出点击按钮获取到的类Tab
+        console.log(this);
+        // 判断index
+        if (index === "domestic") {
+            // 通过setState()修改state的值
+            this.setState({
+                orgCity: "北京大兴",
+                dstCity: "上海虹桥",
+                orgStyle: "wd-tab-item active navbar-active navbar-tab-item tab-normal-font-size",
+                dstStyle: "wd-tab-item navbar-tab-item tab-normal-font-size"
+            });
+        } else {
+            this.setState({
+                orgCity: "福冈",
+                dstCity: "烟台",
+                orgStyle: "wd-tab-item navbar-tab-item tab-normal-font-size",
+                dstStyle: "wd-tab-item active navbar-active navbar-tab-item tab-normal-font-size"
+            });
+        }
+    }
     render() {
         return (
             <div>
@@ -30,21 +63,21 @@ export default class Home extends Component {
                                         {/* navbar选项卡 */}
                                         <NarBar>
                                             <TabItem>
-                                                <span style={{fontSize:'.38rem'}}>国内机票</span>
+                                                <span data-index="domestic" onClick={this.tabItemClickHandler} className={this.state.orgStyle} style={{ fontSize: '.38rem' }}>国内机票</span>
                                             </TabItem>
                                             <TabItem>
-                                                <span style={{fontSize:'.38rem'}}>国际/地区机票</span>
+                                                <span data-index="international" onClick={this.tabItemClickHandler} className={this.state.dstStyle} style={{ fontSize: '.38rem' }}>国际/地区机票</span>
                                             </TabItem>
                                         </NarBar>
                                         <div className="orgDstWrap">
                                             <div className="orgCity">
-                                                北京大兴
+                                                {this.state.orgCity}
                                         </div>
                                             <div className="changeOrgDst">
                                                 <div className="changeIcon"></div>
                                             </div>
                                             <div className="dstCity">
-                                                上海虹桥
+                                                {this.state.dstCity}
                                         </div>
                                         </div>
                                         <div className="flightDateWrap">
