@@ -3,7 +3,6 @@ import 'antd-mobile/dist/antd-mobile.css';
 import { TabBar } from 'antd-mobile';
 import '../../assets/styles/Tab.scss'
 import Home from '../Home/Home'
-import tab_me_no from '../../assets/images/Home/tab_me_no.png'
 import tab_me_no_ny from '../../assets/images/Home/tab_me_no_ny.png'
 import tab_notice_no_ny from '../../assets/images/Home/tab_notice_no_ny.png'
 import tab_main_no_ny from '../../assets/images/Home/tab_main_no_ny.png'
@@ -115,7 +114,7 @@ export default class TabBarExample extends React.Component {
                 <div style={{
                   width: '22px',
                   height: '22px',
-                  background: `url(${tab_me_no}) center center /  21px 21px no-repeat` }}
+                  background: `url(${tab_me_no_ny}) center center /  21px 21px no-repeat` }}
                 />
               }
               selectedIcon={

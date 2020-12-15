@@ -14,7 +14,7 @@ class QuickEnteryslide extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            objArr:[
+            objArr: [
                 {
                     image: flightDynamic,
                     name: '航班动态'
@@ -52,37 +52,41 @@ class QuickEnteryslide extends Component {
     }
     render() {
         return (
-            <div className="quickEntrySlide">
-                {/* <!-- 快捷入口的指示器，因为放到快捷入口之后 getCurrentPage无法获取，只能提到前面--> */}
-                <div className="dotWrap">
-                    <span className="dotsHover dotsItem"></span>
-                    <span className="dotsItem"></span>
-                    <span className="dotsItem"></span>
-                </div>
-                {/* 八个入口 */}
-                <div className="productList">
-                    <Card>
-                        <div className="quickEntryWrap">
-                            <div className="quickEntryGroup">
-                                <div className="productType">
-                                    <ul className="rowType">
-                                        {
-                                            this.state.objArr.map((item, index) => (
-                                                <li className="product-li-info" key={index}>
-                                                    <div className="img-wrapper">
-                                                        <img src={item.image} />
-                                                    </div>
-                                                    <span className="wordClass">{item.name}</span>
-                                                </li>
-                                            ))
-                                        }
-
-                                    </ul>
-                                </div>
-                            </div>
+            <div>
+                <transition>
+                    <div className="quickEntrySlide">
+                        {/* <!-- 快捷入口的指示器，因为放到快捷入口之后 getCurrentPage无法获取，只能提到前面--> */}
+                        <div className="dotWrap">
+                            <span className="dotsHover dotsItem"></span>
+                            <span className="dotsItem"></span>
+                            <span className="dotsItem"></span>
                         </div>
-                    </Card>
-                </div>
+                        {/* 八个入口 */}
+                        <div className="productList">
+                            <Card>
+                                <div className="quickEntryWrap">
+                                    <div className="quickEntryGroup">
+                                        <div className="productType">
+                                            <ul className="rowType">
+                                                {
+                                                    this.state.objArr.map((item, index) => (
+                                                        <li className="product-li-info" key={index}>
+                                                            <div className="img-wrapper">
+                                                                <img src={item.image} />
+                                                            </div>
+                                                            <span className="wordClass">{item.name}</span>
+                                                        </li>
+                                                    ))
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Card>
+                        </div>
+                    </div>
+                </transition>
             </div>
         );
     }

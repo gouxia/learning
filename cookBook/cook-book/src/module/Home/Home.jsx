@@ -18,7 +18,8 @@ export default class Home extends Component {
             orgCity: "北京大兴",
             dstCity: "上海虹桥",
             orgStyle: "wd-tab-item active navbar-active navbar-tab-item tab-normal-font-size",
-            dstStyle: "wd-tab-item navbar-tab-item tab-normal-font-size"
+            dstStyle: "wd-tab-item navbar-tab-item tab-normal-font-size",
+            changeIconStyle:"changeIcon"
         }
     }
     tabItemClickHandler = (e) => {
@@ -43,6 +44,22 @@ export default class Home extends Component {
                 dstStyle: "wd-tab-item active navbar-active navbar-tab-item tab-normal-font-size"
             });
         }
+    }
+    changeOrgCityDstCity = () => {
+        if(this.state.changeIconStyle === "changeIcon") {
+            this.setState({
+                orgCity: this.state.dstCity,
+                dstCity: this.state.orgCity,
+                changeIconStyle: "changeAnimation changeIcon"
+            })
+        }else{
+            this.setState({
+                orgCity: this.state.dstCity,
+                dstCity: this.state.orgCity,
+                changeIconStyle: "changeIcon"
+            })
+        }
+
     }
     render() {
         return (
@@ -72,8 +89,8 @@ export default class Home extends Component {
                                             <div className="orgCity">
                                                 {this.state.orgCity}
                                         </div>
-                                            <div className="changeOrgDst">
-                                                <div className="changeIcon"></div>
+                                            <div className="changeOrgDst" onClick={this.changeOrgCityDstCity}>
+                                                <div className={this.state.changeIconStyle}></div>
                                             </div>
                                             <div className="dstCity">
                                                 {this.state.dstCity}
