@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import '../assets/styles/HomeBanner.scss';
+import '../../assets/styles/HomeBanner.scss';
 import { Carousel } from 'element-react';
 import 'element-theme-default';
-import banner01 from '../assets/images/mbanner01.jpg'
-import banner02 from '../assets/images/mbanner02.jpg'
-import banner03 from '../assets/images/mbanner03.jpg'
+import banner01 from '../../assets/images/Home/mbanner01.jpg'
+import banner02 from '../../assets/images/Home/mbanner02.jpg'
+import banner03 from '../../assets/images/Home/mbanner03.jpg'
 class HomeBanner extends Component {
     constructor(props) {
         super(props);

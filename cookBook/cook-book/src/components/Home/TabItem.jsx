@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../assets/styles/TabItem.scss'
+import '../../assets/styles/TabItem.scss'
 class TabItem extends Component {
     render() {
         return (

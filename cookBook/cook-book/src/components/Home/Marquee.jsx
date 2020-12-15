@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../assets/styles/Marquee.scss'
+import '../../assets/styles/Marquee.scss'
 class Marquee extends Component {
     render() {
         return (

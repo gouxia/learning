@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../assets/styles/Card.scss'
+import '../../assets/styles/Card.scss'
 
 class card extends Component {
     render() {

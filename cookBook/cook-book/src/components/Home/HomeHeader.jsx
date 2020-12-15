@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../assets/styles/HomeHeader.scss'
+import '../../assets/styles/HomeHeader.scss'
 class HomeHeader extends Component {
     render() {
         return (

@@ -6,7 +6,6 @@ $wd-navbar-tab-item-horizontal-offset: .5rem;//.373333rem;
   line-height: 100%;
   align-items: center;
   justify-content: center;
-  // @include font-dpr(16px);
   font: 0.4375rem;
   box-sizing: border-box;
   .wd-tab-item-icon-wrapper {
@@ -26,15 +25,12 @@ $wd-navbar-tab-item-horizontal-offset: .5rem;//.373333rem;
   }
 }
 .tab-normal-font-size{
-  //@include font-dpr(12px);
   font-size: 0.3rem;
 }
 .tab-middle-font-size{
-  //@include font-dpr(13px);
   font-size: 1rem;
 }
 .tab-small-font-size{
-  //@include font-dpr(10px);
   font-size: 1rem;
 }
 .tabItemIcon{

@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import '../assets/styles/Home.scss'
-import TabPage from '../components/TabPage'
-import Scroll from '../components/Scroll'
-//import TabBar from '../components/TabBar'
-import HomeHeader from '../components/HomeHeader'
-import HomeBanner from '../components/HomeBanner'
-import HomeAnnouncement from '../components/HomeAnnouncement'
-import NarBar from '../components/NavBar'
-import TabItem from '../components/TabItem'
-import Button from '../components/Button'
-import QuickEnteryslide from '../components/QuickEnteryslide'
-import Recommended from '../components/Recommended'
+import '../../assets/styles/Home.scss'
+import TabPage from '../../components/Home/TabPage'
+import Scroll from '../../components/Home/Scroll'
+import HomeHeader from '../../components/Home/HomeHeader'
+import HomeBanner from '../../components/Home/HomeBanner'
+import HomeAnnouncement from '../../components/Home/HomeAnnouncement'
+import NarBar from '../../components/Home/NavBar'
+import TabItem from '../../components/Home/TabItem'
+import Button from '../../components/Home/Button'
+import QuickEnteryslide from '../../components/Home/QuickEnteryslide'
+import Recommended from '../../components/Home/Recommended'
 export default class Home extends Component {
     constructor(props) {
         super(props)

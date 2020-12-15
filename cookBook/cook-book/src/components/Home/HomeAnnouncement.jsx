@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../assets/styles/HomeAnnouncement.scss'
+import '../../assets/styles/HomeAnnouncement.scss'
 import Marquee from './Marquee'
 class HomeAnnouncement extends Component {
     render() {

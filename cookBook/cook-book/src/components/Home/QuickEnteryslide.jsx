@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import '../assets/styles/QuickEnteryslide.scss'
-import Card from '../components/Card'
-import flightDynamic from '../assets/images/flightDynamic.png'
-import car from '../assets/images/car.png'
-import irregularflight from '../assets/images/irregularflight.png'
-import meal from '../assets/images/meal.png'
-import plus from '../assets/images/plus.png'
-import blind from '../assets/images/blind.png'
-import baggage from '../assets/images/baggage.png'
-import chooseSeat from '../assets/images/chooseSeat.png'
+import '../../assets/styles/QuickEnteryslide.scss'
+import Card from '../../components/Home/Card'
+import flightDynamic from '../../assets/images/Home/flightDynamic.png'
+import car from '../../assets/images/Home/car.png'
+import irregularflight from '../../assets/images/Home/irregularflight.png'
+import meal from '../../assets/images/Home/meal.png'
+import plus from '../../assets/images/Home/plus.png'
+import blind from '../../assets/images/Home/blind.png'
+import baggage from '../../assets/images/Home/baggage.png'
+import chooseSeat from '../../assets/images/Home/chooseSeat.png'
 
 class QuickEnteryslide extends Component {
     constructor(props) {

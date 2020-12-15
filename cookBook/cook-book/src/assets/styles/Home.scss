@@ -86,7 +86,7 @@
         width: 1.4rem;
         height: 0.733333rem;
         float: left;
-        background: url("../images/changeCUA.png") 
+        background: url("../images/Home/changeCUA.png") 
           no-repeat center center;
         background-size: 0.733333rem;
       }
@@ -100,7 +100,7 @@
       .changeIcon {
         width: 1.4rem;
         height: 0.733333rem;
-        background: url("../images/changeOrgDst.png")
+        background: url("../images/Home/changeOrgDst.png")
           no-repeat center center;
         background-size: 0.733333rem;
         transition: All 0.4s ease-in-out;
@@ -131,7 +131,7 @@
           width: 0.373333rem;
           height: 100%;
           margin-right: 0.2rem;
-          background: url("../images/close.png") no-repeat right center;
+          background: url("../images/Home/close.png") no-repeat right center;
           background-size: 0.373333rem;
           float: right;
         }
@@ -142,7 +142,7 @@
           right: 0;
           bottom: 0.4rem;
           padding-left: 0.666667rem;
-          background: url("../images/dstDay.png") no-repeat
+          background: url("../images/Home/dstDay.png") no-repeat
             left center;
           background-size: 0.426667rem;
         }
@@ -184,7 +184,7 @@
           width: 100%;
           height: 0.96rem /* 72/75 */;
           line-height: 0.9rem /* 72/75 */;
-          background: url("../images/search-bg.png") no-repeat;
+          background: url("../images/Home/search-bg.png") no-repeat;
           background-size: 8.933333rem /* 670/75 */ 1.05rem;
           border: 0;
           //font-size: 0.43rem;

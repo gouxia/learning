@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Home from './home/Home'
+import Index from './module/Home/Index'
 export default class App extends Component {
     render() {
         return (
-                <Home></Home>
+                <Index></Index>
         )
     }
 }

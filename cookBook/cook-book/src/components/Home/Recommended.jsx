@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import '../assets/styles/Recommended.scss'
-import Card from '../components/Card'
-import free01 from '../assets/images/free01.jpg'
-import free02 from '../assets/images/free02.jpg'
-import free03 from '../assets/images/free03.jpg'
-import free04 from '../assets/images/free04.jpg'
-import free05 from '../assets/images/free05.jpg'
-import sale01 from '../assets/images/sale01.png'
-import sale02 from '../assets/images/sale02.png'
+import '../../assets/styles/Recommended.scss'
+import Card from '../../components/Home/Card'
+import free01 from '../../assets/images/Home/free01.jpg'
+import free02 from '../../assets/images/Home/free02.jpg'
+import free03 from '../../assets/images/Home/free03.jpg'
+import free04 from '../../assets/images/Home/free04.jpg'
+import free05 from '../../assets/images/Home/free05.jpg'
+import sale01 from '../../assets/images/Home/sale01.png'
+import sale02 from '../../assets/images/Home/sale02.png'
 class Recommended extends Component {
   render() {
     return (

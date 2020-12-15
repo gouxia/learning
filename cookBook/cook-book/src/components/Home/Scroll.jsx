@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../assets/styles/Scroll.scss'
+import '../../assets/styles/Scroll.scss'
 import BScroll from 'better-scroll'
 
 const defProps = {
