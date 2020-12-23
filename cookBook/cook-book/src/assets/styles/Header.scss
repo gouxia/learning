@@ -1,0 +1,80 @@
+$headerHeight: 1.173333rem /* 88/75 */;
+.wd-header {
+  width: 10rem;
+  height: $headerHeight;
+  line-height: $headerHeight;
+  margin: 0 auto;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  background: #D4222B;
+  // background: #f63939 url('../../../../../assets/images/cua/header-bg-img.png') no-repeat;
+  // background-size: 10rem;
+  &.wd-header-reset {
+    background: transparent;
+  }
+  .wd-header-backgound, .wd-header-content {
+    width: 10rem;
+    height: $headerHeight;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 991;
+    opacity: 1;
+  }
+  .wd-header-content {
+    background: transparent;
+    z-index: 992;
+  }
+  .wd-header-backgound, content {
+    opacity: 1;
+    -webkit-transition: opacity 0.8s ease-out;
+    -moz-transition: opacity 0.8s ease-out;
+    -ms-transition: opacity 0.8s ease-out;
+    -o-transition: opacity 0.8s ease-out;
+    transition: opacity 0.8s ease-out;
+  }
+  content {
+    display: flex;
+    justify-content: center;
+    // @include font-dpr(14px);
+    font-size: .5rem;
+    height: $headerHeight;
+  }
+  .wd-header-opacity {
+    opacity: 0;
+  }
+  .wd-header-left-wrapper {
+    position: absolute;
+    // left: 0.32rem;
+    left: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    // @include font-dpr(16px);
+    font-size: .5rem;
+    color: #fff;
+    z-index: 10;
+  }
+  .jt-cityHead-input-warp {
+    position: absolute;
+    //left: 4.2rem;
+    font-size: .4rem;
+    color: #fff;
+  }
+  .wd-header-right-wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    // @include font-dpr(16px);
+    font-size: .5rem;
+    color: #fff;
+  }
+}

@@ -1,0 +1,230 @@
+.jt-canlendarHead-warp {
+  margin-left:3.8rem;
+}
+.WhiteBackIcon {
+    display: block;
+    width: 0.8rem;
+    height: 100%;
+    background: url("../images/Home/backWhite.png") no-repeat 0.266667rem center;
+    background-size: 0.226667rem 0.4rem;
+  }
+  .headerBack {
+    width: 1.16rem;
+    height: 1.16rem;
+    background: url("../images/Home/backBlack.png") no-repeat left center;
+    background-size: 0.333333rem;
+  }
+  .clearDstDate {
+    height: 0.6rem;
+    line-height: 0.6rem;
+    // @include font-dpr(14px);
+    font-size: .5rem;
+    padding: 0.1rem 0.2rem;
+    border-radius: 8px;
+    color: #505050;
+    border: 1px solid #505050;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .calendarWrap {
+    -webkit-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0 auto;
+    width: 10rem;
+    height: 100%;
+    z-index: 99997;
+    box-shadow: 0 0.01rem 0.06rem rgba(0, 0, 0, 0.2);
+    background-color:#fff;
+  }
+  .dayMain {
+    height: calc(100% - 1.173333rem);
+    height: 100%;
+    overflow: hidden;
+  }
+  .weeks {
+    position: relative;
+    box-shadow: 2px 5px 10px #c3c1c1;
+    z-index: 999;
+    
+  }
+  .weeks,
+  .weeks ul {
+    background-color: #fff;
+    overflow: hidden;
+  }
+  .weeks ul li {
+    list-style-type: none;
+    width: 14.2%;
+    float: left;
+    padding: 0.15rem 0;
+    
+  }
+  .weeks li:first-child div,
+  .weeks li:last-child div {
+    color: #df3538;
+    font-size: 0.4rem;
+  }
+  .week-zh {
+    // @include font-dpr(16px);
+    font-size: .4rem;
+  }
+  .week-en {
+    color: #888888;
+    // @include font-dpr(14px);
+    font-size: .4rem;
+  }
+  .week-zh,
+  .week-en {
+    width: 100%;
+    float: left;
+    text-align: center;
+  }
+  .wrapper {
+    height: calc(100% - 1.773333rem);
+    overflow: hidden;
+    background-color: #fff;
+  }
+  .monthWrap {
+    width: 10rem;
+    height: calc(100% - 1.96rem);
+    overflow-y: scroll;
+    background-color: #fff;
+  }
+  .monthItemwrap {
+    background: #fff;
+    margin-top: 0.3rem;
+  }
+  .monthItemHead {
+    height: 0.613333rem;
+    position: relative;
+    margin-bottom: 0.8rem;
+  }
+  .monthItemHeadContent {
+    clear: both;
+    width: 5.333333rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: center;
+    background-color: #e5e5e5;
+    color: #888888;
+    font-size: 0.43rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+  }
+  .monthTable {
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 0.4rem;
+  }
+  .monthTable ul {
+    overflow: hidden;
+  }
+  .monthTable ul li {
+    display: block;
+    width: 14.2%;
+    overflow: hidden;
+    float: left;
+    text-align: center;
+    background: #fff;
+    box-sizing: border-box;
+  }
+  .monthTable ul li:nth-child(7n),
+  .monthTable ul li:nth-child(7n + 1) {
+    color: #df3538;
+  }
+  .disabled {
+    color: #c9c9c9 !important;
+  }
+  .dateItem {
+    // padding-left: 0.4rem;
+    font-size: .4rem;
+    margin-bottom: 0.1rem;
+    position: relative;
+    white-space: nowrap;
+  }
+  .orgDay {
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.6rem;
+    position: absolute;
+    background: #fff;
+    left: 0;
+    top: 0;
+  }
+  .dstDays {
+    display: inline-block;
+    width: calc(100% - 1rem);
+    height: 0.6rem;
+    position: absolute;
+    background: #fff;
+    right: 0;
+    top: 0;
+  }
+  .otherday {
+    display: block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 0.45rem;
+    font-family: Pingfang SC,Helvetica;
+    color: #888888;
+    font-size: .3rem;
+  }
+  .holidayStyle {
+    // @include font-dpr(12px);
+    font-size: .5rem;
+    color: #df3538;
+  }
+  .orgChooseDate {
+    background-color: #fdbb9d;
+    color: #df3538;
+    width: 0.47rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 0.47rem;
+    font-family: Pingfang SC,Helvetica;
+    font-size: .35rem;
+    margin-left: 0.5rem;
+  }
+  .dstChooseDate {
+    background-color: #fff;
+  }
+  .today {
+    font-size: .3rem;
+     display: block;
+    width: 0.47rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #df3538;
+    color: #fff;
+    line-height: 0.45rem;
+    margin-left: 0.47rem;
+  }
+  .lowPrice {
+    display: block;
+    width: 100%;
+    height: 0.8rem;
+    float: left;
+    color: #888888;
+    // @include font-dpr(12px);
+    font-size: .2rem;
+  }
+  .slide-enter,
+  .slide-leave-active {
+    transform: translateY(100%);
+  }
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0;
+  }

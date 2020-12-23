@@ -1,0 +1,299 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.airport-list-warp {
+  width: 9.466667rem;
+  height: auto;
+  margin: 0.13rem auto;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 0.26667rem;
+}
+.fixFloat::after {
+  content: "";
+  width: 0;
+  height: 1px;
+  clear: both;
+  display: table;
+}
+$comPaddingSize: 0.266667rem;
+$comBorderColor: #a4a4a4;
+::-webkit-scrollbar {
+  display: none;
+}
+.WhiteBackIcon {
+  display: block;
+  width: 0.8rem;
+  height: 100%;
+  background: url("../images/Home/backWhite.png") no-repeat 0.266667rem center;
+  background-size: 0.226667rem 0.4rem;
+}
+.jt-cityHead-input-warp {
+  position: absolute;
+  left: 0.4rem;
+  top: 0.09rem;
+  .jt-cityHead-input {
+    box-sizing: border-box;
+    width: 8.96rem;
+    height: 0.8rem;
+    display: block;
+    border-radius: 0.2rem;
+    // @include font-dpr(14px);
+    font-size: 0.375rem;
+    outline: none;
+    border: 0;
+    padding-left: 1.04rem;
+    padding-right: 1.186667rem;
+  }
+  input::-webkit-input-placeholder {
+    color: #d4d4d4;
+    text-align: left;
+  }
+  .jt-cityHead-search-icon {
+    display: block;
+    background: url("../images/Home/base-search-icon.png") no-repeat 0.253333rem
+      center;
+    background-size: 0.373333rem;
+    width: 0.88rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .jt-cityHead-searchClear-icon {
+    display: block;
+    background: url("../images/Home/close-icon.png") no-repeat center center;
+    background-size: 0.373333rem;
+    width: 1.186667rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+// 城市列表容器
+.jetair-widget-citys {
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0 auto;
+  width: 10rem;
+  height: 100%;
+  z-index: 99999;
+  background-color:#f5f5f5;
+
+  // tab切换
+  .jetair-widget-tabWarp {
+    background-color: #f5f5f5;
+    padding: $comPaddingSize 0;
+    .jetair-widget-citys-tabItemWrap {
+      width: 9.466667rem;
+      height: 1.08rem;
+      line-height: 1.08rem;
+      margin: auto;
+      display: flex;
+      border: 2px solid #fff;
+      border-radius: 0.2rem;
+      overflow: hidden;
+      box-shadow: 0 0 0.106667rem 0.026667rem #b8b6b6;
+      .jetair-widget-citys-tabItem {
+        flex: 1;
+        height: 100%;
+        // @include font-dpr(16px);
+        font-size: 0.425rem;
+        text-align: center;
+        line-height: inherit;
+        background-color: #fff;
+        color: #f1775b;
+      }
+      .tabCur {
+        background: #f1775b;
+        color: #fff;
+      }
+    }
+  }
+
+  // 列表
+  .jetair-widget-citys-content {
+    width: 9.46667rem;
+    margin: auto;
+    margin-top: 0.266667rem /* 20/75 */;
+    height: calc(100% - 1.706667rem /* 128/75 */);
+    background-color: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 0.2rem;
+    position: relative;
+    // box-shadow: $jetair-comon-box-shadow;
+
+    // 列表统一样式
+    .jetair-widget-citys-list {
+      position: relative;
+      dl {
+        dt {
+          padding-top: 0.2rem;
+          padding-left: $comPaddingSize;
+          height: 0.8rem;
+          line-height: 0.8rem;
+          // @include font-dpr(12px);
+          font-size: 0.3rem;
+          color: #f37756;
+          background: #fff;
+          em {
+            position: relative;
+            top: 0.01rem;
+            margin-right: 0.06rem;
+          }
+        }
+
+        dd {
+          // @include font-dpr(14px);
+          font-size: 0.375rem;
+          margin: 0 $comPaddingSize;
+          height: 1rem;
+          line-height: 1rem;
+          border-bottom: 1px dotted $comBorderColor;
+          span {
+            margin-left: 0.15rem;
+            color: #888;
+          }
+        }
+
+        // 历史热门城市列表
+        .jetair-widget-unique-header {
+          height: 0.733333rem;
+          line-height: 0.733333rem;
+          padding-top: 0;
+          padding-left: 0.68rem;
+          position: relative;
+          color: #a8a8a8;
+          &::before {
+            content: "";
+            display: block;
+            width: 0.2rem;
+            height: 0.2rem;
+            position: absolute;
+            top: 50%;
+            left: $comPaddingSize;
+            margin-top: -0.1rem;
+            border-radius: 50%;
+            background-color: #808080;
+          }
+        }
+        .jetair-widget-star-header {
+          @extend .jetair-widget-unique-header;
+          &::before {
+            background-color: #f37756;
+          }
+        }
+
+        .jetair-widget-history-star-warp {
+          padding: 0 $comPaddingSize;
+          height: auto;
+          margin: 0;
+          border: 0;
+
+          ul {
+            list-style: none;
+            @extend .fixFloat;
+            li {
+              // @include font-dpr(11px);
+              font-size: 0.28rem;
+              box-sizing: border-box;
+              float: left;
+              width: 2.233333rem;
+              height: 0.933333rem;
+              line-height: 0.933333rem;
+              text-align: center;
+            }
+          }
+
+          // 历史城市
+          ul.jetair-widget-history-warp {
+            border-bottom: 0.013333rem dotted $comBorderColor;
+            padding-bottom: 0.133333rem;
+            display: block;
+            margin-bottom: 0.213333rem;
+          }
+          //热门城市
+          ul.jetair-widget-star-warp {
+            margin-bottom: 0.213333rem;
+          }
+          ul.no-star-city {
+            border-bottom: 0;
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .jetair-widget-citys-searchlist {
+    ul {
+      li {
+        list-style: none;
+        // @include font-dpr(14px);
+        font-size: 0.375rem;
+        margin: 0 $comPaddingSize;
+        height: 1rem;
+        line-height: 1rem;
+        border-bottom: 1px dotted $comBorderColor;
+      }
+    }
+    .nomatch {
+      line-height: 1.38rem;
+      text-align: center;
+      font-size: 0.37rem;
+      color: #aaa;
+    }
+  }
+
+  .jetair-widget-citys-letnav {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 1.173333rem;
+    padding-right: $comPaddingSize;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+
+    ol {
+      text-align: right;
+      padding-bottom: 0.2rem;
+      list-style: none;
+      li {
+        padding: 0.03rem 0.02rem;
+        color: #666666;
+        // @include font-dpr(12px);
+        font-size: 0.375rem;
+        width: 100%;
+        line-height: 100%;
+        box-sizing: border-box;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.star-small {
+  width: 0.266667rem;
+  height: 0.266667rem;
+  display: inline-block;
+  background-size: cover;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0NUIzQTM3RDdEODIxMUU2OUY3OURCQzgxN0I4RjkwMCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo0NUIzQTM3RTdEODIxMUU2OUY3OURCQzgxN0I4RjkwMCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjQ1QjNBMzdCN0Q4MjExRTY5Rjc5REJDODE3QjhGOTAwIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjQ1QjNBMzdDN0Q4MjExRTY5Rjc5REJDODE3QjhGOTAwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+kvZSAAAAAWVJREFUeNpiTEtLYyAB2ELpw8RqYGEgDdQA8V9aWWAKxG5QtjEQnyVGExOJroeBKmI1EWuBHhD7IvEDgFiTmhZUAzEjmr4qalmgAcQhWMQjgFiRGhZU4lAHSiBlpKYiEF8FiHWAWBuKA/HoTwRiISC+AsTXoPRdIP6DbGAKEDsCsRYUs5GQstiBOAyKYeAnEF+HWrgf5PUjQGwNxAYkGo7PUgOomYdBFtyAFgHXGagHrkEtuAmLvMdQS05RwfATULOeoqeit0DsDMR7KDB8BxC7APE7XMn0CxB7A/FqMgxfBsT+QPyVUD74BcS1ZFhQCtVLVEYzJcMCc1JysgUZFlgMGgu4gFgfhyG/sIUzFJhgq8CwWWCMReE/IF4ErQM0oex/xDiMiUAE/wfiNdDCLx6I70ExiK0LlfuPL5iwWWAJpbdCvR2Koxi5BpUDOWgbKRZ8h5YjPkB8jojIPQvNnLbY4gcgwAAXbkHtR5mBDgAAAABJRU5ErkJggg==");
+}
+.slide-enter,
+.slide-leave-active {
+  transform: translateY(100%) !important;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}

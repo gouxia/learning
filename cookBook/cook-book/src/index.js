@@ -4,7 +4,7 @@ import App from './App.jsx';
 import "./untils/rem"
 
 ReactDOM.render(
-  <App></App>,
+  <App/>,
   document.getElementById('root')
 );
 

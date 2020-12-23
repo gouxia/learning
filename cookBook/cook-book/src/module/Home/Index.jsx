@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'antd-mobile/dist/antd-mobile.css';
 import { TabBar } from 'antd-mobile';
 import '../../assets/styles/Tab.scss'
 import Home from '../Home/Home'
