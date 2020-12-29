@@ -12,6 +12,7 @@ import QuickEnteryslide from '../../components/Home/QuickEnteryslide'
 import Recommended from '../../components/Home/Recommended'
 import Calendar from '../../components/Home/Calendar'
 import AirportList from '../../components/Home/AirportList'
+import queryAirportData from '../../components/Home/airportList.json'
 export default class Home extends Component {
     constructor(props) {
         super(props)
@@ -40,7 +41,14 @@ export default class Home extends Component {
             clearDate: false,
             orgDst: "org",
             // 是否显示机场列表组件
-            isDisplay:false
+            isDisplay:false,
+            airportListProps: {
+                orgDst: "org",
+                cityData: { domestic: [], international: [], airports: [] },
+                localCity: {},
+                starCity: [],
+                historyCity: []
+              }
 
         }
     }
@@ -55,8 +63,26 @@ export default class Home extends Component {
 
     componentDidMount() {
         this.getflightDateInfo()
+        // 将机场列表组件的数据保存在state中的airportListProps中
+        //console.log(queryAirportData)
+        let airportDate = this.state.airportListProps
+        airportDate.cityData.domestic =queryAirportData.airportBOCNs
+        airportDate.cityData.international = queryAirportData.airportBOABs
+        airportDate.cityData.airports = queryAirportData.airports
+        this.setState({
+            airportDate
+        })
+        //console.log(this.state.airportListProps)
+        let airportHot = this.state.airportListProps
+        airportHot.starCity =queryAirportData.hotAirports
+        this.setState({
+            airportHot
+        })    
+        this._formatCityList(this.state.airportListProps.cityData);  
     }
-
+    _formatCityList (arr, type) {
+        return arr;
+      }
     tabItemClickHandler = (e) => {
         console.log(e.target.dataset.index);
         let index = e.target.dataset.index;
@@ -295,6 +321,8 @@ export default class Home extends Component {
                 <AirportList
                     found={this.state.isDisplay}
                     toggleAirportList={isDisplay => this.toggleAirportList(isDisplay)}
+                    cityData={this.state.airportListProps.cityData}
+                    starCity={this.state.airportListProps.starCity}
                 />
             </div >
         )
