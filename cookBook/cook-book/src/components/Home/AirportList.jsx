@@ -14,8 +14,7 @@ class AirportList extends Component {
       hotList: [],
       // letterList: {},
       tabCur: "domestic",
-      simple: true,
-      historyList: []
+      simple: true
     }
   }
   hide = () => {
@@ -33,7 +32,7 @@ class AirportList extends Component {
     }
   }
   componentDidMount = () => {
-    //console.log('this.curInCityData----', this.curInCityData);
+    // console.log('this.curCityData----', this.curCityData);
   }
   // 以下为机场组件的方法
   // react中的计算属性用get，并要有返回值return，当要使用计算属性就要用this.hasStarCity
@@ -108,14 +107,56 @@ class AirportList extends Component {
   }
   // 点击城市
   _chooseOne = (cityItem) => {
-    const storage = window.localStorage;
-     storage.setItem("airportName",JSON.stringify([cityItem]))
-      //第三种方法读取
-      const airportName=storage.getItem("airportName");
-      JSON.parse(airportName)
-    // console.log(airportName)
+    // 调用父组件的onChoose方法并传入参数
+    this.props.onChoose(cityItem)
+    this.hide();
+    //console.log(this.props)
   }
-
+  /**
+      * 点击字母
+      */
+  _chooseLetter(e) {
+    let symbol = e.target.getAttribute("data-type");
+    if (symbol === "starCity") {
+      this.setState({
+        targetLetter: "starCity/history"
+      })
+    } else {
+      this.setState({
+        targetLetter: e.target.innerText
+      })
+    }
+  }
+  /**
+       * 输入城市查询
+       */
+  _search = () => {
+    let reg = new RegExp(this.state.input === "" ? "xxyy" : this.state.input, "ig"),
+     _arr = [];
+     //console.log(this.curCityData)
+     this.curCityData.filter(item => {
+       item.airports.filter(airportItem => {
+         if(this.state.input === airportItem.headerChar) {
+          _arr.push(airportItem);
+          this.setState({
+            searchList:_arr
+          })
+          console.log(this.state.searchList)
+         }
+       })
+     });
+  }
+  clearInput = () => {
+    this.setState({
+      input:''
+    })
+  }
+  // input输入框onChange绑定事件，监听input标签中的变化
+  inputChangeHandler = (event) => {
+    this.setState({ 
+      input: event.target.value 
+    });
+  }
   render() {
     const { found } = this.props;
     return found ? (
@@ -131,9 +172,13 @@ class AirportList extends Component {
             }
             center={
               <div className="jt-cityHead-input-warp">
-                <input className="jt-cityHead-input" placeholder={"北京 / beijing / bj / PKX"} />
-                <i className="jt-cityHead-search-icon"></i>
-                <i className="jt-cityHead-searchClear-icon" onClick={this.clearInput}>
+                <input 
+                className="jt-cityHead-input" 
+                placeholder={"北京 / beijing / bj / PKX"} 
+                value={this.state.input}  
+                onChange={this.inputChangeHandler}/>
+                <i className="jt-cityHead-search-icon" onClick={() => this._search()} ></i>
+                <i className="jt-cityHead-searchClear-icon" onClick={() => this.clearInput()}>
                 </i>
               </div>
             }
@@ -152,14 +197,14 @@ class AirportList extends Component {
           {/* 右侧字母搜索指引 */}
           {
             this.state.tabCur === 'domestic' && this.state.input === '' ?
-              <div className="jetair-widget-citys-letnav">
+              <div className="jetair-widget-citys-letnav" onClick={() => this.touchmove()}>
                 <ol>
                   <div>
-                    <li>
+                    <li onClick={() => this._chooseLetter()} data-type="starCity/history">
                       <em className='star-small'></em>
                     </li>
                     {this.curCityData.map((item, inx) => (
-                      <li key={inx}>
+                      <li key={inx} onClick={() => this._chooseLetter()} data-type="letter">
                         {item.letter}
                       </li>
 
@@ -179,33 +224,48 @@ class AirportList extends Component {
                     {/* <!-- 历史/热门 --> */}
                     {
                       this.state.tabCur === 'domestic' ?
+                      this.state.input === '' ?
                         <div>
-                          <dt className="jetair-widget-unique-header">
-                            历史
-                        </dt>
-                          <dd className="jetair-widget-history-star-warp">
-                            <ul className="jetair-widget-history-warp">
-                              <li>
-                                {this.state.historyList}
-                              </li>
-                            </ul>
-                          </dd>
-                          <dt className="jetair-widget-star-header">热门</dt>
-                          <dd className="jetair-widget-history-star-warp" style={{ borderBottom: '.013333rem dashed #8a8989' }}>
-                            <ul className="jetair-widget-star-warp">
-                              {this.props.starCity.map((item, idx) => (
-                                <li key={idx} onClick={() => this._chooseOne(item.airportName)}>
-                                  {item.airportName}
-                                </li>
-                              ))}
-                            </ul>
-                          </dd>
-                        </div> :
+                          {
+                            this.props.historyCity === [] ?
+                              null :
+                              <div>
+                                <dt className="jetair-widget-unique-header">
+                                  历史
+                                </dt>
+                                <dd className="jetair-widget-history-star-warp">
+                                  <ul className="jetair-widget-history-warp">
+                                    {this.props.historyCity.map((historyItem, historyItemIndex) => (
+                                      <li key={historyItemIndex} onClick={() => this._chooseOne(historyItem)}>
+                                        {historyItem.airportName}
+                                      </li>
+                                    ))
+                                    }
+                                  </ul>
+                                </dd>
+                              </div>
+                          }
+                          <div>
+                            <dt className="jetair-widget-star-header">热门</dt>
+                            <dd className="jetair-widget-history-star-warp" style={{ borderBottom: '.013333rem dashed #8a8989' }}>
+                              <ul className="jetair-widget-star-warp">
+                                {this.props.starCity.map((item, idx) => (
+                                  <li key={idx} onClick={() => this._chooseOne(item)}>
+                                    {item.airportName}
+                                  </li>
+                                ))}
+                              </ul>
+                            </dd>
+                          </div>
+                        </div>:
+                        null
+                         :
                         null
                     }
                     {/* <!-- 机场列表 --> */}
                     {
                       this.state.tabCur === 'domestic' ?
+                        this.state.input === '' ?
                         <div>
                           {this.curCityData.map((item, inx) => (
                             <div key={inx}>
@@ -221,8 +281,26 @@ class AirportList extends Component {
                               ))}
                             </div>
                           ))}
+                        </div>:
+                        <div style={{width:'100%',height:"500px"}}>
+                          <div>
+                          
+                            <div>
+                                <div>
+                                {this.state.searchList.map((searchItem, searchIteminx) => (
+                                  <dd key={searchIteminx} onClick={() => this._chooseOne(searchItem)}>
+                                    {searchItem.airportName}
+                                  </dd>
+                                ))}
+                                </div>
+                                
+                            </div>
+                          
                         </div>
-                        :
+                        </div>
+
+                       :
+                       this.state.input === '' ?
                         <div className="jetair-widget-citys-list-internation">
                           {this.curInCityData.map((item, inx) => (
                             <div key={inx}>
@@ -239,7 +317,24 @@ class AirportList extends Component {
                               ))}
                             </div>
                           ))}
-                        </div>
+                        </div>:
+                         <div style={{width:'100%',height:"500px"}}>
+                         <div>
+                         
+                           <div>
+                               <div>
+                               {this.state.searchList.map((searchItem, searchIteminx) => (
+                                 <dd key={searchIteminx} onClick={() => this._chooseOne(searchItem)}>
+                                   {searchItem.airportName}
+                                 </dd>
+                               ))}
+                               </div>
+                               
+                           </div>
+                         
+                       </div>
+                       </div>
+
                     }
                   </dl>
                 </div>

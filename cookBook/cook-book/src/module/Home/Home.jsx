@@ -18,8 +18,6 @@ export default class Home extends Component {
         super(props)
         this.state = {
             selectedTabId: "domestic",
-            orgCity: "北京大兴",
-            dstCity: "上海虹桥",
             orgStyle: "wd-tab-item active navbar-active navbar-tab-item tab-normal-font-size",
             dstStyle: "wd-tab-item navbar-tab-item tab-normal-font-size",
             changeIconStyle: "changeIcon",
@@ -41,14 +39,15 @@ export default class Home extends Component {
             clearDate: false,
             orgDst: "org",
             // 是否显示机场列表组件
-            isDisplay:false,
+            isDisplay: false,
             airportListProps: {
                 orgDst: "org",
+                orgCity: '北京大兴',
+                dstCity: '上海虹桥',
                 cityData: { domestic: [], international: [], airports: [] },
-                localCity: {},
                 starCity: [],
                 historyCity: []
-              }
+            }
 
         }
     }
@@ -66,7 +65,7 @@ export default class Home extends Component {
         // 将机场列表组件的数据保存在state中的airportListProps中
         //console.log(queryAirportData)
         let airportDate = this.state.airportListProps
-        airportDate.cityData.domestic =queryAirportData.airportBOCNs
+        airportDate.cityData.domestic = queryAirportData.airportBOCNs
         airportDate.cityData.international = queryAirportData.airportBOABs
         airportDate.cityData.airports = queryAirportData.airports
         this.setState({
@@ -74,33 +73,32 @@ export default class Home extends Component {
         })
         //console.log(this.state.airportListProps)
         let airportHot = this.state.airportListProps
-        airportHot.starCity =queryAirportData.hotAirports
+        airportHot.starCity = queryAirportData.hotAirports
         this.setState({
             airportHot
-        })    
-        this._formatCityList(this.state.airportListProps.cityData);  
+        })
+        this._formatCityList(this.state.airportListProps.cityData);
     }
-    _formatCityList (arr, type) {
+    _formatCityList(arr, type) {
         return arr;
-      }
-    tabItemClickHandler = (e) => {
-        console.log(e.target.dataset.index);
-        let index = e.target.dataset.index;
-        // 此时控制台能输出点击按钮获取到的类Tab
-        console.log(this);
+    }
+    tabItemClickHandler = (selectedTabId) => {
         // 判断index
-        if (index === "domestic") {
-            // 通过setState()修改state的值
+        if (selectedTabId === "domestic") {
+            let domesticCity = this.state.airportListProps
+            domesticCity.orgCity = "北京大兴";
+            domesticCity.dstCity = "上海虹桥";
             this.setState({
-                orgCity: "北京大兴",
-                dstCity: "上海虹桥",
+                domesticCity,
                 orgStyle: "wd-tab-item active navbar-active navbar-tab-item tab-normal-font-size",
                 dstStyle: "wd-tab-item navbar-tab-item tab-normal-font-size"
             });
         } else {
+            let internationalCity = this.state.airportListProps
+            internationalCity.orgCity = "福冈";
+            internationalCity.dstCity = "烟台";
             this.setState({
-                orgCity: "福冈",
-                dstCity: "烟台",
+                internationalCity,
                 orgStyle: "wd-tab-item navbar-tab-item tab-normal-font-size",
                 dstStyle: "wd-tab-item active navbar-active navbar-tab-item tab-normal-font-size"
             });
@@ -109,14 +107,14 @@ export default class Home extends Component {
     changeOrgCityDstCity = () => {
         if (this.state.changeIconStyle === "changeIcon") {
             this.setState({
-                orgCity: this.state.dstCity,
-                dstCity: this.state.orgCity,
+                orgCity: this.state.airportListProps.dstCity,
+                dstCity: this.state.airportListProps.orgCity,
                 changeIconStyle: "changeAnimation changeIcon"
             })
         } else {
             this.setState({
-                orgCity: this.state.dstCity,
-                dstCity: this.state.orgCity,
+                orgCity: this.state.airportListProps.dstCity,
+                dstCity: this.state.airportListProps.orgCity,
                 changeIconStyle: "changeIcon"
             })
         }
@@ -170,7 +168,8 @@ export default class Home extends Component {
         })
     }
     // 设置机场列表组件显示和隐藏状态
-    toggleAirportList = () => {
+    toggleAirportList = (type) => {
+        this.state.airportListProps.orgDst = type
         this.setState({
             isDisplay: !this.state.isDisplay
         })
@@ -229,6 +228,48 @@ export default class Home extends Component {
             })
         }
     }
+    // 以下是机场列表的方法
+    onChoose = (cityItem) => {
+        console.log(cityItem)
+        if (this.state.airportListProps.orgDst === 'org') {
+            let selectCity = this.state.airportListProps
+            selectCity.orgCity = cityItem.airportName;
+            this.setState({
+                selectCity
+            })
+        } else {
+            let selectCity = this.state.airportListProps
+            selectCity.dstCity = cityItem.airportName;
+            this.setState({
+                selectCity
+            })
+        }
+        // 将点击的历史机场存在本地的localStorage中
+        const storage = window.localStorage;
+        // 当你为点击机场时，通过storage.getItem()拿到的是一个空数组，只有点击机场才会通过unshift()方法将你点击的机场放进数组中
+        let historylist = storage.getItem("historylist") || [];
+        // 此时输出的为一个空数组
+        //console.log(historylist)
+        // 判断historylist类型，如果为string类型则将historylist转化为数组类型
+        typeof historylist === 'string' && (historylist = JSON.parse(historylist));
+        // 向localStorage数组中添加点击的机场（也就是保存数据），unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度。
+        historylist.unshift(cityItem)
+        // es5 hash去重法
+        //historylist = unique(historylist);
+        // 限制4个记录
+        if (historylist.length > 4) {
+            historylist.pop(cityItem)
+        }
+        // 利用JSON.stringify()将存入的数据转换成字符串
+        storage.setItem("historylist", JSON.stringify(historylist))
+        let historyAirport = this.state.airportListProps
+        historyAirport.historyCity = historylist;
+        this.setState({
+            historyAirport
+        })
+
+        //console.log(this.state.airportListProps.historyCity)
+    }
     render() {
         return (
             <div>
@@ -247,21 +288,21 @@ export default class Home extends Component {
                                         {/* navbar选项卡 */}
                                         <NarBar>
                                             <TabItem>
-                                                <span data-index="domestic" onClick={this.tabItemClickHandler} className={this.state.orgStyle} style={{ fontSize: '.38rem' }}>国内机票</span>
+                                                <span data-index="domestic" onClick={()=> this.tabItemClickHandler('domestic')} className={this.state.orgStyle} style={{ fontSize: '.38rem' }}>国内机票</span>
                                             </TabItem>
                                             <TabItem>
-                                                <span data-index="international" onClick={this.tabItemClickHandler} className={this.state.dstStyle} style={{ fontSize: '.38rem' }}>国际/地区机票</span>
+                                                <span data-index="international" onClick={()=> this.tabItemClickHandler('international')} className={this.state.dstStyle} style={{ fontSize: '.38rem' }}>国际/地区机票</span>
                                             </TabItem>
                                         </NarBar>
                                         <div className="orgDstWrap">
-                                            <div className="orgCity" onClick={this.toggleAirportList}>
-                                                {this.state.orgCity}
+                                            <div className="orgCity" onClick={() => this.toggleAirportList('org')}>
+                                                {this.state.airportListProps.orgCity}
                                             </div>
                                             <div className="changeOrgDst" onClick={this.changeOrgCityDstCity}>
                                                 <div className={this.state.changeIconStyle}></div>
                                             </div>
-                                            <div className="dstCity" onClick={this.toggleAirportList}>
-                                                {this.state.dstCity}
+                                            <div className="dstCity" onClick={() => this.toggleAirportList('dst')}>
+                                                {this.state.airportListProps.dstCity}
                                             </div>
                                         </div>
                                         <div className="flightDateWrap">
@@ -323,6 +364,8 @@ export default class Home extends Component {
                     toggleAirportList={isDisplay => this.toggleAirportList(isDisplay)}
                     cityData={this.state.airportListProps.cityData}
                     starCity={this.state.airportListProps.starCity}
+                    onChoose={(cityItem) => this.onChoose(cityItem)}
+                    historyCity={this.state.airportListProps.historyCity}
                 />
             </div >
         )
