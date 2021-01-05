@@ -106,15 +106,19 @@ export default class Home extends Component {
     }
     changeOrgCityDstCity = () => {
         if (this.state.changeIconStyle === "changeIcon") {
+            let domesticSite = this.state.airportListProps
+            domesticSite.orgCity = this.state.airportListProps.dstCity;
+            domesticSite.dstCity = this.state.airportListProps.orgCity;
             this.setState({
-                orgCity: this.state.airportListProps.dstCity,
-                dstCity: this.state.airportListProps.orgCity,
+                domesticSite,
                 changeIconStyle: "changeAnimation changeIcon"
             })
         } else {
+            let internationalCity = this.state.airportListProps
+            internationalCity.orgCity = this.state.airportListProps.dstCity;
+            internationalCity.dstCity = this.state.airportListProps.orgCity;
             this.setState({
-                orgCity: this.state.airportListProps.dstCity,
-                dstCity: this.state.airportListProps.orgCity,
+                internationalCity,
                 changeIconStyle: "changeIcon"
             })
         }
@@ -230,7 +234,7 @@ export default class Home extends Component {
     }
     // 以下是机场列表的方法
     onChoose = (cityItem) => {
-        console.log(cityItem)
+        // console.log(cityItem)
         if (this.state.airportListProps.orgDst === 'org') {
             let selectCity = this.state.airportListProps
             selectCity.orgCity = cityItem.airportName;
@@ -269,6 +273,12 @@ export default class Home extends Component {
         })
 
         //console.log(this.state.airportListProps.historyCity)
+    }
+    toFlightResult = () => {
+        if(this.state.airportListProps.orgCity===this.state.airportListProps.dstCity){
+            alert("出发地和目的地不能相同")
+        }
+
     }
     render() {
         return (
@@ -336,7 +346,7 @@ export default class Home extends Component {
                                             }
                                         </div>
                                         <div className="SearchBtnWrap">
-                                            <div className="flightSearchBtn">
+                                            <div className="flightSearchBtn" onClick={this.toFlightResult}>
                                                 <Button></Button>
                                             </div>
                                             <div className="go-special-booking">

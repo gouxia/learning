@@ -5,7 +5,7 @@
 .airport-list-warp {
   width: 9.466667rem;
   height: auto;
-  margin: 0.13rem auto;
+  //margin: 0.13rem auto;
   background: #FFFFFF;
   box-sizing: border-box;
   border-radius: 0.26667rem;
@@ -123,15 +123,12 @@ $comBorderColor: #a4a4a4;
   .jetair-widget-citys-content {
     width: 9.46667rem;
     margin: auto;
-    margin-top: 0.266667rem /* 20/75 */;
     height: calc(100% - 3rem /* 128/75 */);
     background-color: #fff;
     overflow: hidden;
     box-sizing: border-box;
     border-radius: 0.2rem;
     position: relative;
-    overflow-y: scroll;
-    // box-shadow: $jetair-comon-box-shadow;
 
     // 列表统一样式
     .jetair-widget-citys-list {

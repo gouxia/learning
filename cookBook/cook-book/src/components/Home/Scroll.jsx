@@ -107,7 +107,14 @@ class Scroll extends Component {
       scrollbar
     });
   }
-
+  // 代理better-scroll的scrollTo方法
+  scrollTo () {
+    this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments);
+  }
+  // 代理better-scroll的scrollToElement方法
+  scrollToElement () {
+    this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments);
+  }
   /** 下拉信息 */
   get pulldownText() {
     const { pulldownStatus } = this.state;
